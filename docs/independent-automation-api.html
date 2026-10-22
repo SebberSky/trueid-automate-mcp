@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ผลศึกษาการเขียน REST API, MCP และ automation runners ขององค์กรเอง โดยไม่ fork หรือห่อ MCP ของผู้ให้บริการเดิม">
+<title>เขียน Automation REST API + MCP เอง — ผลศึกษาความเป็นไปได้</title>
+<style>
+:root{color-scheme:light;--ink:#182528;--muted:#536366;--paper:#f6f7f4;--line:#d9dfda;--accent:#176450;--soft:#e7efea;--warn:#815717}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.85 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--accent);text-underline-offset:3px}header,main,footer{max-width:1180px;margin:auto;padding:32px}header{padding-top:64px;border-bottom:1px solid var(--line)}h1{font-size:clamp(28px,4vw,43px);line-height:1.4;max-width:930px;margin:12px 0 22px}h2{font-size:25px;line-height:1.5;margin:0 0 14px}h3{font-size:18px;margin:0 0 8px}p{margin:0 0 16px}.eyebrow{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:700}.lead{font-size:20px;max-width:940px}.muted,small{color:var(--muted)}nav{display:flex;flex-wrap:wrap;gap:8px 22px;margin:24px 0 0}nav a{font-size:14px}section{padding:36px 0;border-bottom:1px solid var(--line);scroll-margin-top:20px}.note{background:var(--soft);padding:20px 24px;border-left:3px solid var(--accent)}.warning{border-left-color:var(--warn);background:#f4eddf}.columns{display:grid;grid-template-columns:1fr 1fr;gap:32px}.architecture{display:grid;grid-template-columns:1fr 1fr 2fr;gap:14px;margin:20px 0}.stage{border:1px solid var(--line);padding:20px;background:#fff}.stage strong{display:block;font-size:18px}.stage span{display:block;color:var(--muted);font-size:14px}.stage ol{margin:10px 0 0;padding-left:20px}code{font:13px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;background:#e9ede8;padding:2px 5px;border-radius:3px;overflow-wrap:anywhere}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#e9ede8;padding:20px;font:13px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace}.scroll{overflow:auto}table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}th,td{text-align:left;vertical-align:top;padding:14px;border-bottom:1px solid var(--line)}th{background:#e9ede8}td:first-child{min-width:170px;font-weight:600}td:nth-child(2){min-width:200px}td:nth-child(3){min-width:210px}td:last-child{min-width:260px}td small{display:block;margin-top:6px}.label{font-size:12px;border:1px solid var(--line);padding:2px 8px;white-space:nowrap}.filters{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin:20px 0}label{display:grid;gap:4px;font-size:13px}input,select,button{font:inherit;padding:9px 12px;border:1px solid #bbc8bf;background:#fff;color:var(--ink);border-radius:3px}input{min-width:270px}button{cursor:pointer}button:hover{background:var(--soft)}:focus-visible{outline:3px solid var(--accent);outline-offset:3px}ul,ol{padding-left:24px}li{margin:6px 0}.steps{counter-reset:step;list-style:none;padding:0}.steps>li{counter-increment:step;padding:16px 0;border-top:1px solid var(--line)}.steps>li:before{content:"0" counter(step);font:14px ui-monospace,monospace;color:var(--accent);margin-right:12px}.sources{columns:2;column-gap:32px;font-size:14px}.sources li{break-inside:avoid;margin-bottom:16px}footer{font-size:13px;padding-bottom:56px}.empty{padding:18px;background:#fff}details{padding:14px 0;border-top:1px solid var(--line)}summary{font-weight:600;cursor:pointer}[hidden]{display:none!important}@media(max-width:760px){header,main,footer{padding:24px}header{padding-top:36px}.columns,.architecture{grid-template-columns:1fr}.sources{columns:1}.lead{font-size:18px}section{padding:28px 0}}@media print{body{background:#fff;font-size:11pt}header,main,footer{max-width:none;padding:14px}nav,.filters,button{display:none}.scroll{overflow:visible}table{font-size:9pt}td,th{min-width:0!important;padding:7px}section{break-inside:auto}.architecture,.note{break-inside:avoid}a{color:inherit}.sources{columns:1}}
+</style>
+</head>
+<body>
+<header>
+<div class="eyebrow">TrueID Automate MCP · Feasibility study · 22 October 2026</div>
+<h1>เขียน REST API และ MCP ของเราเอง<br>ให้ทีมใช้ร่วมกันได้จริงแค่ไหน?</h1>
+<p class="lead">ทำได้ โดยเขียนตัวบริการและตัวควบคุมอุปกรณ์เอง ใช้ความสามารถของ Appium, Maestro, Playwright และ Mobilewright เป็นข้อกำหนดอ้างอิง ไม่ใช่ fork หรือเรียก MCP/automation engine ของเขาอยู่ข้างหลัง</p>
+<p class="muted">ขอบเขต: ใช้ภายในองค์กรหลายคน อาจมีหน้าเว็บ public URL ที่แชร์เฉพาะทีม แต่การเปิดหน้าเว็บกับการเปิดสิทธิ์ควบคุมเครื่องทดสอบเป็นคนละเรื่อง</p>
+<nav aria-label="หัวข้อรายงาน"><a href="#verdict">ข้อสรุป</a><a href="#architecture">ต้องสร้างอะไร</a><a href="#approaches">ทางเลือก runner</a><a href="#capabilities">ความสามารถ</a><a href="#api">REST → MCP</a><a href="#limits">ข้อจำกัด</a><a href="#delivery">ความพร้อมใช้งาน</a><a href="#sources">แหล่งข้อมูล</a></nav>
+</header>
+<main>
+<section id="verdict">
+<h2>ข้อสรุปก่อน</h2>
+<div class="note"><strong>สร้างเครื่องมือที่ทีมใช้ทำงานประจำได้จริง: เป็นไปได้</strong><br>แต่การเขียน REST routes และ MCP tools ไม่ได้ทำให้ควบคุมอุปกรณ์ได้เอง งานใหญ่คือตัว runner, การหา element, การรอ UI, การกู้ session และการทดสอบกับ OS/อุปกรณ์จริง</div>
+<ul>
+<li><strong>เหมือนในเชิงความสามารถ:</strong> อ่านหน้าจอ หา element แตะ พิมพ์ ปัด เปิดแอป ทดสอบ flow และเก็บผล สามารถออกแบบให้เทียบเคียงกันได้ด้วย API ของแต่ละแพลตฟอร์ม <a href="#s-apple">[Apple]</a> <a href="#s-android">[Android]</a> <a href="#s-cdp">[Chrome]</a></li>
+<li><strong>ไม่เท่ากับรองรับทุกอย่าง 100%:</strong> การรันโค้ด Playwright เดิม, ตั้งค่า Appium driver เดิม หรือส่งงานเข้าบริการ Cloud ของผู้ให้บริการ เป็นสัญญาเฉพาะของระบบนั้น ต้องสร้างทางเลือกของเรา หรือยอมระบุว่าไม่รองรับ <a href="#s-inventory">[รายการอ้างอิง]</a></li>
+<li><strong>149 tools เป็นข้อมูลวิจัย:</strong> ไม่ใช่ 149 ความสามารถที่เราพัฒนาและทดสอบแล้ว และจำนวนชื่อ tools ไม่ใช่ตัววัดความเท่าเทียม</li>
+</ul>
+<p class="muted">สถานะรายงาน: ตรวจ source/documentation และประเมินทางวิศวกรรม ยังไม่ได้สร้างหรือทดสอบ native runner ในรอบนี้ ข้อเสนอด้านสถาปัตยกรรม ระดับความยาก และระยะเวลาไม่ใช่ผล benchmark</p>
+</section>
+<section id="architecture">
+<h2>สิ่งที่ต้องสร้างเอง</h2>
+<p>REST API และ MCP ในข้อเสนอนี้เป็นขององค์กรเราเอง ส่วนชั้น runner เลือกได้สองแนวทางด้านล่าง การใช้ library/driver ใต้ API ของเราไม่ใช่การ fork หรือการห่อ MCP ของผู้ให้บริการเดิม และ native runner ก็ไม่ใช่ข้อบังคับของโจทย์</p>
+<div class="architecture" aria-label="MCP ของเราเรียก REST API ของเรา แล้วส่งคำสั่งไป runner ที่เราเขียนเอง">
+<div class="stage"><strong>1. MCP ของเรา</strong><span>TypeScript + MCP SDK</span><p>ประกาศ tools, ตรวจ arguments, แปลงผล/ภาพ/error ให้ agent เรียกได้</p><span>เรียก REST API เดียวกับ UI/CI →</span></div>
+<div class="stage"><strong>2. REST API ของเรา</strong><span>TypeScript + HTTP framework + OpenAPI</span><p>session, capability registry, คิว, device lease, job timeout, logs และ artifacts</p><span>ส่งคำสั่งที่ตรวจสอบแล้ว →</span></div>
+<div class="stage"><strong>3. Runner ของเรา</strong><ol><li><b>iOS:</b> Swift + XCTest/XCUIAutomation ใน UI-test runner และ host service บน Mac</li><li><b>Android:</b> Kotlin + AndroidX UI Automator ใน instrumentation APK และ host service ผ่าน ADB</li><li><b>Web:</b> ตัว client Chrome DevTools Protocol (CDP) ของเรา เริ่ม Chromium ก่อน</li></ol></div>
+</div>
+<div class="columns">
+<div><h3>iOS runner</h3><p>เขียน UI-test target ที่รับคำสั่งแบบมีขอบเขตและเรียก XCUIApplication/XCUIElement เอง ไม่ใช่แอป iOS ปกติที่ขอสิทธิ์แล้วควบคุมทุกแอปได้ ต้องสร้างการสื่อสาร host ↔ test runner, command loop, element references และการ restart หลัง runner ตายเอง <a href="#s-apple">[Apple]</a> <a href="#s-xctest">[XCTest]</a></p><p>Mac host ใช้ Xcode tools จัดการ build/test และ simulator/device lifecycle; อุปกรณ์จริงมี signing/provisioning และการเตรียมเครื่องเพิ่ม ไม่ได้ย้ายไปรันทั้งหมดใน Linux container แล้วจบ <a href="#s-xcode">[Xcode tools]</a> <a href="#s-real-ios">[real device]</a></p></div>
+<div><h3>Android และ browser runner</h3><p>Android ใช้ instrumentation เพื่ออ่าน/โต้ตอบ UI และ ADB จัดการอุปกรณ์ แอป ไฟล์ และ logs ไม่พึ่งการส่ง <code>adb shell input</code> อย่างเดียว เพราะไม่แก้เรื่อง selectors และ synchronization <a href="#s-android">[UI Automator]</a> <a href="#s-adb">[ADB]</a></p><p>Browser ใช้ CDP ติดต่อ Chromium ผ่าน WebSocket ได้โดยตรง แต่ต้องเขียน locator semantics, auto-wait, frame handling และ event correlation เอง การรองรับ Firefox/Safari ต้องมี backend อื่น ไม่ได้ตามมาจาก CDP <a href="#s-cdp">[CDP]</a></p></div>
+</div>
+<p><strong>Dependency ที่ยังต้องมี:</strong> runtime/HTTP framework, MCP SDK, Swift/Xcode, Kotlin/Gradle/JDK/Android SDK, UI Automator, browser binary และ client WebSocket ส่วนฐานข้อมูล คิว และ object storage เลือกตามขนาดระบบได้ ไม่จำเป็นต้องเริ่มด้วย Kubernetes หรือ device farm ขนาดใหญ่</p>
+</section>
+<section id="approaches">
+<h2>สองทางเลือกของชั้น runner</h2>
+<div class="columns">
+<div class="stage"><h3>A. ใช้ library/driver ใต้ REST API ของเรา</h3><p>เลือกใช้ automation library หรือ protocol client ที่มี license และขอบเขตเหมาะสม แล้ววาง session, auth, queue, capability registry, error model และ artifacts ไว้ใน service ของเราเอง ตัวอย่างเช่นใช้ Playwright library สำหรับ Chromium หรือใช้ client ที่พูดกับ driver ของแพลตฟอร์ม โดยไม่เปิด MCP เดิมเป็น backend</p><p><strong>ข้อดี:</strong> ได้ locator, waits, browser contexts และ edge cases เร็วกว่า ลดโค้ด native ที่ต้องดูแลเอง</p><p><strong>ข้อแลกเปลี่ยน:</strong> ต้องยอมรับ API/version/license ของ dependency และอาจไม่ได้ portability หรือ semantics แบบเดียวกันทุก platform; ต้องตรวจว่า driver ที่ใช้ยังทำให้ระบบเป็นเจ้าของ execution boundary จริง</p></div>
+<div class="stage"><h3>B. เขียน native runner ของเราเอง</h3><p>ใช้ XCTest/XCUIAutomation, Android UI Automator/ADB และ CDP เป็น system API/protocol แล้วสร้าง locator, waits, stale references, recovery และ lifecycle เองทั้งหมด</p><p><strong>ข้อดี:</strong> ควบคุม contract, data flow และการผูกกับองค์กรได้ลึก ลดการผูกกับ framework ระดับสูง</p><p><strong>ข้อแลกเปลี่ยน:</strong> ใช้เวลามากกว่าและต้องรับผิดชอบความเสถียร/compatibility เอง โดยเฉพาะ iOS signing, Android versions, browser protocol และการกู้ runner</p></div>
+</div>
+<div class="note"><strong>ข้อเสนอเชิงปฏิบัติ:</strong> เริ่มจาก REST/MCP contract เดียวกัน แล้วทำ vertical slice ด้วย library/driver ที่ผ่านการตรวจ license และ security เพื่อพิสูจน์ workflow ก่อน จากนั้นค่อยแทนที่เฉพาะจุดด้วย native implementation เมื่อมีเหตุผลด้าน capability, reliability, cost หรือ data boundary ไม่ควรถือว่าการเขียน native ทั้งหมดเป็น acceptance criterion โดยอัตโนมัติ</div>
+<p class="muted">ไม่ว่าทางเลือกใด สิ่งที่เป็นของเราและต้องทดสอบเองยังเหมือนกัน: multi-user session/lease, authorization, cancellation, cleanup, artifacts, observability, support matrix และ error semantics การใช้ dependency ไม่ได้ทำให้ความสามารถของ dependency กลายเป็นความสามารถที่ repo นี้มีอยู่แล้ว</p>
+</section>
+<section id="capabilities">
+<h2>ความสามารถที่จะทำให้ใกล้เคียงต้นแบบ</h2>
+<p>เป็นการประเมินแนวทางเขียนใหม่ ไม่ใช่สถานะ implementation: “ทำได้” หมายถึงมี primitive ให้พัฒนา ไม่ได้หมายความว่าทำเสร็จหรือเสถียรแล้ว ส่วนที่ต่างกันบางฟังก์ชันยังเก็บแยก ไม่ยุบด้วยชื่อที่คล้ายกัน</p>
+<div class="filters"><label>ค้นหาความสามารถ<input id="search" type="search" placeholder="เช่น screenshot, GPS, YAML, WebView"></label><label>ระดับงาน<select id="level"><option value="">ทั้งหมด</option><option value="core">แกนหลัก</option><option value="conditional">มีเงื่อนไข</option><option value="large">งานขนาดใหญ่</option><option value="vendor">เฉพาะผู้ให้บริการ</option></select></label><span id="count" class="muted" aria-live="polite"></span></div>
+<div class="scroll"><table><caption style="text-align:left;padding-bottom:12px">แนวทางพัฒนาใหม่และขอบเขตความเทียบเท่า — ประเมิน 22 ต.ค. 2026</caption><thead><tr><th scope="col">ความสามารถ</th><th scope="col">เขียนด้วยอะไร</th><th scope="col">ความเป็นไปได้</th><th scope="col">สิ่งที่ยังต้องทำ / ข้อจำกัด</th></tr></thead><tbody id="rows">
+<tr data-level="core"><td>Devices / sessions / batch</td><td>Host registry + lease + serial command queue</td><td>แกนหลักของระบบทีม</td><td>หนึ่งอุปกรณ์มีผู้ควบคุมหนึ่ง session ในเวลาเดียวกัน; batch ต้องระบุหยุดเมื่อ error หรือทำต่อ และไม่อ้างว่า rollback UI ได้</td></tr>
+<tr data-level="core"><td>Hierarchy / accessibility IDs / attributes</td><td>XCUI queries, accessibility nodes, CDP DOM/AX tree</td><td>ทำได้กับข้อมูลที่ระบบเปิดเผย <a href="#s-identifier">[1]</a> <a href="#s-android">[2]</a> <a href="#s-ax">[3]</a></td><td>แอปอาจไม่มี ID หรือ custom view ไม่เปิด children ต้องรักษาข้อมูลเฉพาะแพลตฟอร์มไว้; อ่านเฉพาะหน้าปัจจุบันไม่เท่ากับได้ครบทุกหน้า</td></tr>
+<tr data-level="core"><td>Find elements / locator generation / active element</td><td>Selector engine และ resolver ของเรา</td><td>ทำได้ แต่ต้องกำหนด semantics เอง</td><td>ID, text, role, predicate, CSS/XPath ไม่ใช่สิ่งเดียวกันทุกแพลตฟอร์ม; ต้องจัดการหลายผลลัพธ์, stale refs และการ re-resolve ไม่เลือกคลิกตัวแรกเงียบ ๆ</td></tr>
+<tr data-level="core"><td>Tap / click / type / swipe / drag</td><td>XCUIElement, UI Automator, CDP Input</td><td>ทำได้ในขอบเขตที่ประกาศ <a href="#s-apple">[1]</a> <a href="#s-android">[2]</a> <a href="#s-input">[3]</a></td><td>gesture แบบ multi-touch, IME, keyboard submit และ cross-window drag ต้องทดสอบแยก ไม่สรุปว่าเท่ากับ W3C actions ทั้งหมด</td></tr>
+<tr data-level="core"><td>Wait / assert / dialogs / keyboard</td><td>Condition polling, platform events, dialog handlers</td><td>ทำได้และจำเป็นต่อการใช้งานจริง</td><td>ต้องมี deadline และเงื่อนไขก่อน/หลัง action; UI นิ่งไม่ได้แปลว่า network/background tasks จบ <a href="#s-android">[UI stability]</a></td></tr>
+<tr data-level="core"><td>Screenshot / element screenshot</td><td>XCUI screenshot, Android screenshot, CDP Page</td><td>ทำได้ แต่ภาพที่ถูกป้องกันมีข้อจำกัด</td><td>แยก full screen, crop element, full web page และ overlay; Android FLAG_SECURE ทำให้จับภาพไม่ได้/ภาพว่าง ไม่ควรรับประกันว่าจะ bypass ได้ <a href="#s-secure">[FLAG_SECURE]</a></td></tr>
+<tr data-level="conditional"><td>Video / trace / chapters / action overlays</td><td>Platform capture + encoder + timeline ของเรา</td><td>ทำได้เป็นบางชุด ต้องสร้างระบบ artifacts เพิ่ม</td><td>มีไฟล์วิดีโอไม่ได้เท่ากับมี trace viewer, DOM snapshots, network timeline หรือ format ที่เข้ากันกับ Playwright</td></tr>
+<tr data-level="core"><td>Launch / terminate / install / deep link</td><td>Xcode tools + XCUIApplication, ADB + intents</td><td>ทำได้ตามแพลตฟอร์ม <a href="#s-xcode">[1]</a> <a href="#s-adb">[2]</a></td><td>iOS simulator build กับ real-device build ต่างกัน; clear data, list apps และ background lifecycle ต้องตรวจสิทธิ์และ API แยก ไม่สร้างผลสำเร็จจำลอง</td></tr>
+<tr data-level="conditional"><td>Orientation / buttons / clipboard / lock</td><td>XCUIDevice, Android device APIs, host tools</td><td>หลายฟังก์ชันทำได้ แต่ไม่เท่ากันทุก OS</td><td>keycodes, shake, unlock, keyboard visibility และ clipboard ต้องมี support matrix ราย action/OS/device type ไม่ใช่ boolean เดียวทั้งหมวด</td></tr>
+<tr data-level="conditional"><td>GPS / permissions / foldable</td><td>Simulator/emulator controls + platform APIs</td><td>เริ่มจาก simulator/emulator ก่อน</td><td>อย่าสัญญาว่า mock GPS, เปลี่ยนทุก permission หรือสั่ง fold ได้บนเครื่องจริงทุกรุ่น ต้องตรวจเป็นความสามารถเฉพาะอุปกรณ์</td></tr>
+<tr data-level="conditional"><td>Files / logs / crashes / device info</td><td>Host diagnostics, ADB, Xcode/device tooling</td><td>ทำได้บางขอบเขต <a href="#s-adb">[ADB]</a> <a href="#s-xcode">[Xcode]</a></td><td>push/pull ไม่ได้แปลว่าเข้าถึง sandbox ของทุกแอปได้; crash reports/logs อาจได้ช้า ไม่ครบ หรือมีข้อมูลอ่อนไหว</td></tr>
+<tr data-level="large"><td>Native ↔ WebView context</td><td>Native runner + debuggable WebView connection</td><td>ทำได้เมื่อ WebView เปิดให้ inspect</td><td>ต้องจับคู่ native context กับ browser target/frame และจัดการ switching เอง; native accessibility tree ไม่ใช่ DOM และไม่เปิด remote JS ให้ทุกแอปโดยอัตโนมัติ</td></tr>
+<tr data-level="core"><td>Web tabs / navigation / form / JS</td><td>CDP Target, Page, Runtime, DOM, Input</td><td>ทำได้สำหรับ Chromium ที่ควบคุมได้ <a href="#s-cdp">[CDP]</a></td><td>ต้องดูแล iframe, shadow DOM, visibility/hit testing และ auto-wait เอง; เริ่ม browser profile แยก ไม่ใช้โปรไฟล์ส่วนตัวของพนักงาน <a href="#s-profile">[Chrome profiles]</a></td></tr>
+<tr data-level="conditional"><td>Network inspection / mocking / offline</td><td>CDP Network/Fetch และ event store</td><td>ทำได้กับ browser target <a href="#s-network">[Network]</a> <a href="#s-fetch">[Fetch]</a></td><td>ไม่ได้แปลว่าดัก native app traffic ได้เหมือนกัน; native HTTPS, pinning และ backend observability เป็นอีกขอบเขตหนึ่ง</td></tr>
+<tr data-level="conditional"><td>Cookies / storage / media / PDF / upload</td><td>Browser protocol + JavaScript + artifact service</td><td>ทำได้หลายฟังก์ชันใน Chromium</td><td>ต้องรักษา origin/frame/context isolation และแยก schema ของ storage state ของเรา ไม่อ้างว่า import/export ของ Playwright ได้ครบโดยไม่ทดสอบ</td></tr>
+<tr data-level="large"><td>YAML flows / retries / test generation</td><td>Parser + validator + flow interpreter + reporter ของเรา</td><td>ทำได้ แต่เป็นอีกผลิตภัณฑ์ย่อย</td><td>มี YAML parser ไม่เท่ากับ Maestro compatibility ต้องทำ command semantics, variables, subflows, conditions, assertions, retries และ errors ให้ตรงหากต้องการรันไฟล์เดิม</td></tr>
+<tr data-level="large"><td>AI element finding / natural language / recorder</td><td>Vision/OCR/model adapter + action validation + event recorder</td><td>ทำได้เป็นตัวเลือก ไม่ใช่หลักประกันความถูกต้อง</td><td>มีค่า compute/model และความคลาดเคลื่อน; ต้องตรวจ bounds/target ก่อน action, จัดการภาพข้อมูลภายใน และวัดความสำเร็จกับชุดทดสอบจริง</td></tr>
+<tr data-level="large"><td>Device pool / remote viewer / CI runs</td><td>Fleet scheduler, streams, job workers, artifact store</td><td>สร้างบริการภายในเองได้</td><td>ต้องมีเครื่องทดสอบจริง/VM, การจอง-คืน, health check, isolation, quota และ cleanup; การเปิดเว็บ public ไม่ได้สร้างกำลังประมวลผลหรือ device pool ให้</td></tr>
+<tr data-level="large"><td>Firefox / Safari / WebKit parity</td><td>Backend ตาม browser protocol/driver ที่รองรับ</td><td>เป็นงานเพิ่มจาก Chromium อย่างมีนัยสำคัญ</td><td>CDP ออกแบบสำหรับ Chromium/Blink ไม่ใช่ API รวมทุก browser; ควรกำหนด browser support แยกและทดสอบต่อ engine <a href="#s-cdp">[CDP scope]</a></td></tr>
+<tr data-level="vendor"><td>Vendor-specific tools / Cloud login</td><td>เปลี่ยนเป็นคำสั่งเทียบเคียงในระบบเรา หรือ integration ที่ได้รับสิทธิ์</td><td>ไม่ใช่ drop-in replacement โดยอัตโนมัติ</td><td>Playwright run-code, Appium driver settings/WDA setup, Maestro Cloud และ Mobile Next Cloud อ้างถึงของเขาโดยตรง ทำระบบเราให้ได้ผลลัพธ์คล้ายกันได้ แต่ห้ามเรียกว่ารองรับ API/format เดิมครบ <a href="#s-inventory">[inventory]</a></td></tr>
+</tbody></table></div><p id="empty" class="empty" hidden>ไม่พบหัวข้อที่ตรงกับตัวกรอง ลองเปลี่ยนคำค้นหรือระดับงาน</p>
+</section>
+<section id="api">
+<h2>REST API ก่อน แล้วค่อยประกาศ MCP ของเรา</h2>
+<p>ตัวอย่างต่อไปนี้เป็น <strong>design proposal ไม่ใช่ endpoints ที่พร้อมเรียกใช้งาน</strong> ให้ business logic อยู่ใน service layer เดียว MCP เรียก REST API นี้ และ UI/CI ก็ใช้ API เดียวกัน ไม่สร้าง automation logic ซ้ำใน MCP</p>
+<pre>GET    /v1/devices
+GET    /v1/devices/{deviceId}/capabilities
+POST   /v1/sessions
+DELETE /v1/sessions/{sessionId}
+GET    /v1/sessions/{sessionId}/screen
+POST   /v1/sessions/{sessionId}/elements/query
+POST   /v1/sessions/{sessionId}/actions
+POST   /v1/sessions/{sessionId}/screenshots
+POST   /v1/sessions/{sessionId}/apps/actions
+POST   /v1/runs
+GET    /v1/runs/{runId}
+POST   /v1/runs/{runId}/cancel
+GET    /v1/artifacts/{artifactId}
+POST   /mcp   (MCP Streamable HTTP — ไม่ใช่ REST route ทั่วไป)</pre>
+<ul>
+<li><code>screen_inspect</code> → อ่าน screen/tree; <code>element_find</code> → query; <code>ui_tap</code>/<code>ui_type</code>/<code>ui_swipe</code> → typed action; <code>test_run</code> → job ของเรา ชื่อเหล่านี้เป็นข้อเสนอ ไม่ใช่ tools ที่ลงทะเบียนแล้ว</li>
+<li>ใช้ capability registry กลางบอก support ราย action, platform, OS, runner version และข้อจำกัด รักษาความแตกต่าง เช่น element screenshot กับ full-page screenshot และ directional swipe กับ multi-touch</li>
+<li>ทุกคำสั่งผูก <code>sessionId</code> และ device lease; references ผูก snapshot revision และแจ้ง stale เมื่อใช้ไม่ได้ ไม่คลิกพิกัดเดิมต่อเงียบ ๆ</li>
+<li>ยอมรับงานยาวด้วย job ID แล้วให้ poll/events/cancel; กำหนด timeout, error codes และ artifact lifecycle ให้ชัด การกดปุ่มซ้ำไม่ควรถูก retry อัตโนมัติเมื่อไม่รู้ว่าครั้งแรกสำเร็จหรือไม่</li>
+<li>MCP ใช้ SDK มาตรฐานได้โดยไม่พึ่ง MCP ของผู้ให้บริการเดิม สำหรับบริการส่วนกลางใช้ Streamable HTTP; stdio เป็นตัวเลือกแพ็กเกจที่รันใกล้ client ไม่ใช่ข้อบังคับว่าทุกคนต้องใช้เครื่องผู้พัฒนา <a href="#s-mcp">[MCP transport]</a></li>
+</ul>
+</section>
+<section id="limits">
+<h2>ข้อจำกัดที่มีผลต่อการใช้งานจริง</h2>
+<div class="columns"><div>
+<h3>ข้อจำกัดจากแพลตฟอร์ม</h3>
+<ul><li>Runner สร้าง accessibility ID ที่แอปไม่ได้กำหนดไว้ให้เองไม่ได้ ต้องใช้ locator อื่นหรือแก้แอปให้ expose semantics <a href="#s-identifier">[identifier]</a></li><li>Custom drawing, canvas, video และรายการที่ยังไม่ render อาจไม่มี tree ที่ใช้หา element ได้ ภาพ/OCR เป็น fallback แต่ไม่เท่ากับมี semantic IDs</li><li>iOS ต้องมี Mac runner และ test/signing lifecycle ของจริง; simulator กับเครื่องจริงต้องผ่าน acceptance แยก <a href="#s-xcode">[Xcode]</a> <a href="#s-real-ios">[device preparation]</a></li><li>OS updates และ browser protocol changes ทำให้พังได้ ต้อง pin/test versions; CDP tip-of-tree ไม่รับประกัน backwards compatibility <a href="#s-cdp">[protocol versioning]</a></li></ul>
+</div><div>
+<h3>ข้อจำกัดจากการใช้ร่วมกัน</h3>
+<ul><li>ทีม 10 คนใช้ device เดียวได้ด้วยคิว ไม่ใช่ควบคุมพร้อมกัน 10 sessions; เพิ่ม concurrency ด้วยหลายอุปกรณ์หรือแยก emulator/browser contexts ตามงาน</li><li>อุปกรณ์ test ต้องมี test accounts, cleanup และการคืน lease หลัง client หลุด ไม่ใช้เครื่อง/บัญชีส่วนตัวของคนในทีมเป็น shared target โดยปริยาย</li><li>หน้าเอกสาร/catalog ใช้ public URL ได้ แต่ “ไม่ประกาศ URL” ไม่ใช่ access control หาก endpoint ควบคุมอุปกรณ์เปิด public และไม่มี auth ผู้ที่เข้าถึง endpoint ได้ก็สามารถเรียกใช้ได้</li><li>ถ้าต้องการ no-auth ที่ application layer ให้จำกัด API ด้วย VPN/internal network/allowlist แทน; หน้าเว็บ public สามารถแสดงเอกสารโดยไม่เปิด execution API ตามไปด้วย ข้อนี้เป็นข้อเสนอการ deploy ไม่ใช่การตั้งค่าที่ทำแล้ว</li></ul>
+</div></div>
+<details><summary>License มีผลอย่างไรเมื่อเขียนใหม่?</summary><p>การศึกษาความสามารถแล้วเขียน implementation เองต่างจากการคัดลอก source รายงานนี้ไม่กำหนดให้ใช้ MobileCLI/DeviceKit จึงไม่ต้องนำ FSL runtime มาประกอบระบบตามแบบนี้ MIT ของ repo ครอบคลุมงานที่เราเป็นเจ้าของ ไม่ได้เปลี่ยน license ของ SDK, binary หรือโค้ดที่อาจนำเข้าภายหลัง</p><p>ถ้าเปลี่ยนใจนำโค้ดเดิมมาใช้: Appium MCP, Maestro core, Playwright MCP และ Mobile MCP/Mobilewright มี Apache-2.0 แต่ Mobile Next MobileCLI/DeviceKit ใช้ FSL 1.1 ซึ่งระบุ internal use เป็น permitted purpose และมีเงื่อนไขเรื่อง competing commercial use ต้องตรวจ version/dependency chain และเก็บ notices ตาม license จริง ไม่ใช่ดู badge ของ wrapper อย่างเดียว <a href="#s-apache">[Apache]</a> <a href="#s-fsl">[MobileCLI license]</a> <a href="#s-devicekit">[DeviceKit license]</a> ทั้งนี้ไม่ใช่การรับรองทางกฎหมายหรือการตรวจสิทธิ์ dependency ทั้งระบบ</p></details>
+</section>
+<section id="delivery">
+<h2>ทำให้ใช้งานได้จริงแค่ไหน</h2>
+<p><strong>ข้อประเมิน:</strong> เหมาะกับการสร้างเครื่องมือภายในที่รองรับแพลตฟอร์ม/รุ่น/flows ที่ทีมกำหนดชัดเจน ไม่ควรเริ่มด้วยคำสัญญาว่าแทนทุก tool ของทั้งสี่ ecosystem ได้ 100%</p>
+<ol class="steps">
+<li><strong>พิสูจน์ vertical slice บนแพลตฟอร์มแรก:</strong> จอง session → เปิดแอป → อ่าน tree → หา element → แตะ/พิมพ์ → assert → screenshot → คืนเครื่อง โดยเรียกได้ทั้ง REST และ MCP ถ้า loop นี้ยังไม่ผ่านบนอุปกรณ์จริง การเพิ่มชื่อ tools ยังไม่มีน้ำหนัก</li>
+<li><strong>ทำ core ให้ทีมทดลองใช้:</strong> เพิ่มแพลตฟอร์มที่สอง/Chromium, waits, errors, run history, queue, logs และ artifacts ทดสอบผู้ใช้สองคนและการตัด connection อย่างตั้งใจ</li>
+<li><strong>เติมความสามารถเฉพาะที่ทีมต้องใช้:</strong> WebView, network mocking, flow DSL, recorder, video และ viewer แยกเป็นงานจริง ไม่ซ่อนไว้ในชื่อ generic action เดียว</li>
+<li><strong>พิจารณา near-parity ภายหลัง:</strong> รองรับหลาย browser/OS, advanced actions และ vendor-format compatibility ก็ต่อเมื่อมี contract tests และต้นทุนดูแลที่ทีมรับได้</li>
+</ol>
+<div class="note warning"><strong>การวางแผนคร่าว ๆ ไม่ใช่กำหนดส่ง:</strong> ถ้ามีผู้พัฒนา 2–3 คนที่ถนัด native/browser และมีเครื่องทดสอบพร้อม vertical slice หนึ่งแพลตฟอร์มอาจใช้ราว 2–4 สัปดาห์; ระบบ core หลายแพลตฟอร์มพร้อม pilot ภายในควรวางแผนเป็นหลายเดือน; ความใกล้เคียงกว้างทั้ง ecosystem อาจเป็นงาน 6–12 เดือนขึ้นไป ขอบเขตอุปกรณ์และ compatibility เปลี่ยนตัวเลขนี้ได้มาก ยังไม่มี spike หรือ benchmark ของเราเพื่อยืนยัน</div>
+<h3 style="margin-top:24px">เกณฑ์ก่อนเรียกว่า “พร้อมให้ทีมใช้” — ข้อเสนอ ยังไม่ผ่านการทดสอบ</h3>
+<ul><li>กำหนด flows ตัวแทนบนแอปของทีม และรันซ้ำอย่างน้อย 20 ครั้งต่อ flow/target ที่รองรับ แสดง first-attempt pass rate แยกจาก pass-after-retry พร้อม latency และสาเหตุ fail ไม่ใช้จำนวน REST unit tests แทนผล device E2E</li><li>ทดสอบ missing/ambiguous element, stale ref, app crash, runner disconnect, deadline และ cancellation; ผลต้องเป็น error ที่อธิบายได้ ไม่ใช่ HTTP 200 พร้อม success จำลอง</li><li>พิสูจน์ว่าผู้ใช้สองคนแย่งเครื่องเดียวกันไม่ได้ และการปล่อย lease/cleanup ทำงานแม้ MCP client หลุด</li><li>ประกาศ support matrix ต่อ action/OS/device type; action ที่ทำไม่ได้ต้องระบุ unsupported จริง ไม่แทนด้วย action ที่ใกล้เคียงโดยไม่บอก</li><li>มีขั้นตอนติดตั้ง runner, signing/provisioning, upgrade/rollback และเก็บ artifacts ที่สมาชิกทีมคนอื่นทำตามได้</li></ul>
+<p><strong>สถานะปัจจุบันของ repo:</strong> มีเว็บไซต์วิจัย/catalog และ logic เปรียบเทียบ tools และเริ่ม <strong>Chromium vertical slice</strong> ใน <code>execution/</code> (REST + MCP stdio + Playwright library runner, acceptance tests ผ่านบน fixture HTML) ยังไม่มี iOS/Android runner, auth สำหรับเปิด public, หรือผล E2E บนแอปทีม จึงยังไม่สามารถอ้างเปอร์เซ็นต์ coverage หรือ reliability ของระบบเต็มได้</p>
+</section>
+<section id="sources">
+<h2>หลักฐานและแหล่งข้อมูลปฐมภูมิ</h2>
+<p class="muted">ตรวจเอกสารและ license วันที่ 22 ต.ค. 2026; ลิงก์เอกสารแบบ latest/main อาจเปลี่ยนได้ ส่วน inventory เดิมบันทึก upstream revisions ไว้ใน data/catalog.json ข้อสรุปเรื่องการออกแบบและ effort เป็นการประเมินของรายงาน ไม่ใช่คำรับรองจากผู้ให้บริการ</p>
+<ol class="sources">
+<li id="s-inventory"><a href="https://github.com/SebberSky/trueid-automate-mcp/blob/e5cf5d26dcd4fb8521843f31137b8c9c58550985/data/catalog.json">Inventory 149 tools พร้อม source links</a> — baseline สำหรับเทียบความสามารถ ไม่ใช่ผล runtime</li>
+<li id="s-apple"><a href="https://developer.apple.com/documentation/xcuiautomation">Apple XCUIAutomation</a> — queries, interaction, device และ screenshots</li>
+<li id="s-xctest"><a href="https://developer.apple.com/documentation/xctest/">Apple XCTest</a> — XCTest ร่วมกับ XCUIAutomation สำหรับ UI tests</li>
+<li id="s-identifier"><a href="https://developer.apple.com/documentation/xcuiautomation/xcuielementattributes/identifier">Apple element identifier</a> — accessibility identifier ที่ element เปิดเผย</li>
+<li id="s-xcode"><a href="https://developer.apple.com/documentation/xcode/xcode-command-line-tool-reference">Apple Xcode command-line tools</a> — xcodebuild, simctl, devicectl</li>
+<li id="s-real-ios"><a href="https://appium.github.io/appium-xcuitest-driver/10.43/getting-started/device-setup/">Appium: iOS real-device preparation</a> — ใช้อ้างอิงข้อจำกัด trust, Developer Mode และ provisioning ของการใช้ XCTest บนเครื่องจริง ไม่ได้เสนอให้ใช้ Appium/WDA</li>
+<li id="s-android"><a href="https://developer.android.com/training/testing/other-components/ui-automator">Android UI Automator</a> — outside-process UI testing, selectors, state และ screenshots; API รุ่นใหม่ยังอยู่ระหว่างพัฒนา ต้องเลือกรุ่นที่ทดสอบแล้ว</li>
+<li id="s-adb"><a href="https://developer.android.com/tools/adb">Android Debug Bridge</a> — device communication, install, shell และ debugging authorization</li>
+<li id="s-secure"><a href="https://developer.android.com/security/fraud-prevention/activities?hl=en">Android FLAG_SECURE</a> — screen capture restrictions</li>
+<li id="s-cdp"><a href="https://chromedevtools.github.io/devtools-protocol/index.html">Chrome DevTools Protocol</a> — Chromium/Blink scope และ version compatibility caveat</li>
+<li id="s-ax"><a href="https://chromedevtools.github.io/devtools-protocol/tot/Accessibility/">CDP Accessibility</a> — AX tree</li>
+<li id="s-input"><a href="https://chromedevtools.github.io/devtools-protocol/tot/Input/">CDP Input</a> — mouse, keyboard, touch และ gestures</li>
+<li id="s-network"><a href="https://chromedevtools.github.io/devtools-protocol/tot/Network/">CDP Network</a> — network events, requests และ cookies</li>
+<li id="s-fetch"><a href="https://chromedevtools.github.io/devtools-protocol/tot/Fetch/">CDP Fetch</a> — interception/fulfillment ต้องออกแบบ client lifecycle เอง</li>
+<li id="s-profile"><a href="https://developer.chrome.com/blog/remote-debugging-port?hl=en">Chrome remote debugging / profile changes</a> — custom user data directory และ Chrome for Testing</li>
+<li id="s-mcp"><a href="https://modelcontextprotocol.io/specification/2025-11-25/basic/transports">MCP transports specification</a> — stdio และ Streamable HTTP</li>
+<li id="s-apache"><a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a> — redistribution และ notices ไม่ใช่การเปลี่ยน third-party code ทั้งหมดเป็น MIT</li>
+<li id="s-fsl"><a href="https://github.com/mobile-next/mobilecli/blob/main/LICENSE">Mobile Next MobileCLI LICENSE</a> — FSL 1.1, internal use และ competing-use terms</li>
+<li id="s-devicekit"><a href="https://github.com/mobile-next/devicekit-ios/blob/main/LICENSE">DeviceKit iOS LICENSE</a> และ <a href="https://github.com/mobile-next/devicekit-android/blob/main/LICENSE">DeviceKit Android LICENSE</a> — ตรวจ runtime licenses แยกจาก wrapper</li>
+</ol>
+</section>
+</main>
+<footer>รายงานประกอบการตัดสินใจ · ไม่มีการเรียกควบคุมอุปกรณ์ · ไม่มี telemetry หรือ dependency ภายนอกขณะเปิดไฟล์ · หน้านี้เป็นเอกสาร ไม่ใช่ REST API หรือ MCP server ที่ใช้งานได้แล้ว</footer>
+<script>
+const search=document.querySelector('#search'),level=document.querySelector('#level'),rows=[...document.querySelectorAll('#rows tr')];
+function filter(){const q=search.value.trim().toLocaleLowerCase();let count=0;for(const row of rows){const visible=(!level.value||row.dataset.level===level.value)&&row.textContent.toLocaleLowerCase().includes(q);row.hidden=!visible;if(visible)count++;}document.querySelector('#count').textContent=`แสดง ${count} / ${rows.length} หัวข้อ`;document.querySelector('#empty').hidden=count!==0;}
+search.addEventListener('input',filter);level.addEventListener('change',filter);filter();
+</script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+openapi: 3.1.0
+info:
+  title: TrueID Automate Execution API
+  version: 0.1.0
+  description: >
+    Chromium vertical slice. platform=chromium only.
+    v1 has no authentication — bind to loopback only.
+    Not a drop-in for Appium/Maestro/Playwright MCP.
+  security: []
+servers:
+  - url: http://127.0.0.1:8787
+    description: Loopback default (no auth)
+paths:
+  /v1/health:
+    get:
+      summary: Liveness
+      responses:
+        "200":
+          description: OK
+  /v1/capabilities:
+    get:
+      summary: Capability registry snapshot
+      parameters:
+        - name: platform
+          in: query
+          schema:
+            type: string
+            enum: [chromium, ios, android]
+      responses:
+        "200":
+          description: Registry fragment for platform or full registry
+  /v1/devices:
+    get:
+      summary: Local runners that can accept a lease
+      responses:
+        "200":
+          description: Device list (chromium browser slot in v1)
+  /v1/sessions:
+    post:
+      summary: Create session and lease a device
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [platform]
+              properties:
+                platform:
+                  type: string
+                  enum: [chromium]
+                headless:
+                  type: boolean
+                  default: true
+                clientId:
+                  type: string
+                  description: Opaque lease label for logs/debug only — not authentication
+      responses:
+        "201":
+          description: Session created
+        "409":
+          description: Device already leased
+  /v1/sessions/{sessionId}:
+    get:
+      summary: Session status
+      parameters:
+        - $ref: "#/components/parameters/sessionId"
+      responses:
+        "200":
+          description: Session
+        "404":
+          description: Not found
+    delete:
+      summary: Release session and cleanup
+      parameters:
+        - $ref: "#/components/parameters/sessionId"
+      responses:
+        "204":
+          description: Released
+  /v1/sessions/{sessionId}/navigate:
+    post:
+      summary: Navigate to URL
+      parameters:
+        - $ref: "#/components/parameters/sessionId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [url]
+              properties:
+                url:
+                  type: string
+                  format: uri
+      responses:
+        "200":
+          description: Navigated
+  /v1/sessions/{sessionId}/screen:
+    get:
+      summary: Accessibility-oriented page snapshot
+      parameters:
+        - $ref: "#/components/parameters/sessionId"
+      responses:
+        "200":
+          description: Screen tree + revision
+  /v1/sessions/{sessionId}/elements/query:
+    post:
+      summary: Resolve elements; returns refs bound to screen revision
+      parameters:
+        - $ref: "#/components/parameters/sessionId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ElementQuery"
+      responses:
+        "200":
+          description: Matches (may be empty; never silent first-match click)
+        "422":
+          description: Ambiguous when expect=one and count!=1
+  /v1/sessions/{sessionId}/actions:
+    post:
+      summary: Typed UI action
+      parameters:
+        - $ref: "#/components/parameters/sessionId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Action"
+      responses:
+        "200":
+          description: Action applied
+        "409":
+          description: Stale element ref
+        "422":
+          description: Unsupported or invalid action
+  /v1/sessions/{sessionId}/assert:
+    post:
+      summary: Assertion that fails the request on mismatch
+      parameters:
+        - $ref: "#/components/parameters/sessionId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Assert"
+      responses:
+        "200":
+          description: Passed
+        "422":
+          description: Assertion failed
+  /v1/sessions/{sessionId}/screenshots:
+    post:
+      summary: Capture screenshot artifact
+      parameters:
+        - $ref: "#/components/parameters/sessionId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                target:
+                  type: string
+                  enum: [page, element]
+                  default: page
+                ref:
+                  type: string
+      responses:
+        "201":
+          description: Artifact metadata + base64 PNG for v1
+components:
+  parameters:
+    sessionId:
+      name: sessionId
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    ElementQuery:
+      type: object
+      required: [strategy, value]
+      properties:
+        strategy:
+          type: string
+          enum: [role, name, text, css, testid]
+        value:
+          type: string
+        role:
+          type: string
+          description: Required when strategy=role (ARIA role)
+        expect:
+          type: string
+          enum: [any, one]
+          default: any
+          description: one → 422 unless exactly one match
+    Action:
+      type: object
+      required: [type]
+      properties:
+        type:
+          type: string
+          enum: [click, type]
+        ref:
+          type: string
+        text:
+          type: string
+        clear:
+          type: boolean
+          default: true
+    Assert:
+      type: object
+      required: [type]
+      properties:
+        type:
+          type: string
+          enum: [visible, text]
+        ref:
+          type: string
+        text:
+          type: string

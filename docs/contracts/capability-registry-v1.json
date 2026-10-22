@@ -1,0 +1,39 @@
+{
+  "version": "1",
+  "updated": "2026-10-22",
+  "platforms": {
+    "chromium": {
+      "runner": "playwright-library",
+      "licenseNote": "Playwright is Apache-2.0; pin version and retain NOTICE. Not Playwright MCP.",
+      "actions": {
+        "session.create": { "support": "supported" },
+        "session.release": { "support": "supported" },
+        "navigate": { "support": "supported" },
+        "screen.inspect": { "support": "supported", "notes": "Accessibility snapshot for current page; not a guarantee of full DOM parity." },
+        "element.query": { "support": "supported", "notes": "role/name/text/css/testid strategies only in v1." },
+        "action.click": { "support": "supported" },
+        "action.type": { "support": "supported" },
+        "assert.visible": { "support": "supported" },
+        "assert.text": { "support": "supported" },
+        "screenshot.page": { "support": "supported" },
+        "screenshot.element": { "support": "supported" },
+        "device.gps": { "support": "unsupported" },
+        "device.fold": { "support": "unsupported" },
+        "app.install": { "support": "unsupported" },
+        "yaml.flow": { "support": "unsupported" }
+      }
+    },
+    "ios": {
+      "runner": "none",
+      "actions": {
+        "*": { "support": "unsupported", "notes": "Not in vertical slice v1." }
+      }
+    },
+    "android": {
+      "runner": "none",
+      "actions": {
+        "*": { "support": "unsupported", "notes": "Not in vertical slice v1." }
+      }
+    }
+  }
+}

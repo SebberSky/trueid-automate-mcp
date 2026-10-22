@@ -4,4 +4,7 @@ node_modules/
 .env.*
 !.env.example
 *.tar.gz
+execution/test-results/
+execution/playwright-report/
+execution/blob-report/
 
