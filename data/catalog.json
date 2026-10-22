@@ -1,0 +1,1439 @@
+{
+  "tools": [
+    {
+      "system": "Appium",
+      "name": "appium_ai",
+      "description": "ค้นหา element จากคำบรรยายด้วย vision model",
+      "category": "Inspect และค้นหา",
+      "gate": "AI_VISION_ENABLED=true",
+      "actions": [
+        "find_element"
+      ],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/ai/ai.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_app_lifecycle",
+      "description": "จัดการแอปและเปิด deep link",
+      "category": "App และ Context",
+      "gate": "มาตรฐาน",
+      "actions": [
+        "activate",
+        "terminate",
+        "install",
+        "uninstall",
+        "list",
+        "is_installed",
+        "query_state",
+        "background",
+        "clear",
+        "deep_link"
+      ],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/app-management/app.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_mobile_permissions",
+      "description": "อ่าน ปรับ และรีเซ็ต app permissions",
+      "category": "App และ Context",
+      "gate": "มาตรฐาน",
+      "actions": [
+        "get",
+        "update",
+        "reset"
+      ],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/app-management/permissions.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_context",
+      "description": "ดูและสลับ Native/WebView context",
+      "category": "App และ Context",
+      "gate": "มาตรฐาน",
+      "actions": [
+        "list",
+        "switch"
+      ],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/context/context.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_drag_and_drop",
+      "description": "ลากวางระหว่าง elements หรือพิกัด",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/gestures/drag-and-drop.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_gesture",
+      "description": "แตะ ปัด เลื่อน ซูม และเลื่อนหา element",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [
+        "back",
+        "tap",
+        "double_tap",
+        "long_press",
+        "scroll",
+        "swipe",
+        "pinch_zoom",
+        "scroll_to_element"
+      ],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/gestures/gesture.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_perform_actions",
+      "description": "สั่ง W3C actions และ multi-touch",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/gestures/perform-actions.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_get_active_element",
+      "description": "อ่าน element ที่มี focus",
+      "category": "Inspect และค้นหา",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/interactions/active-element.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_mobile_clipboard",
+      "description": "อ่านและเขียน clipboard",
+      "category": "Device controls",
+      "gate": "มาตรฐาน",
+      "actions": [
+        "get",
+        "set"
+      ],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/interactions/clipboard.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_find_elements",
+      "description": "ค้นหา elements ที่ตรงกับ locator",
+      "category": "Inspect และค้นหา",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/interactions/find-elements.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_find_element",
+      "description": "ค้นหา element เดียวด้วย locator",
+      "category": "Inspect และค้นหา",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/interactions/find.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_get_element_attribute",
+      "description": "อ่าน attribute และสถานะ element",
+      "category": "Inspect และค้นหา",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/interactions/get-element-attribute.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_get_page_source",
+      "description": "อ่าน XML hierarchy และกรองผล",
+      "category": "Inspect และค้นหา",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/interactions/get-page-source.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_get_text",
+      "description": "อ่านข้อความของ element",
+      "category": "Inspect และค้นหา",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/interactions/get-text.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_alert",
+      "description": "อ่านข้อความ ยอมรับ และปิด alert",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [
+        "accept",
+        "dismiss",
+        "get_text"
+      ],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/interactions/handle-alert.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_mobile_keyboard",
+      "description": "ซ่อนคีย์บอร์ดและตรวจการแสดงผล",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [
+        "hide",
+        "is_shown"
+      ],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/interactions/keyboard.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_orientation",
+      "description": "อ่านและเปลี่ยนแนวหน้าจอ",
+      "category": "Device controls",
+      "gate": "มาตรฐาน",
+      "actions": [
+        "get",
+        "set"
+      ],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/interactions/orientation.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_mobile_press_key",
+      "description": "กดปุ่มอุปกรณ์และ Android keycode",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/interactions/press-key.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_screen_recording",
+      "description": "เริ่มและหยุดบันทึกวิดีโอหน้าจอ",
+      "category": "Debug และหลักฐาน",
+      "gate": "มาตรฐาน",
+      "actions": [
+        "start",
+        "stop"
+      ],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/interactions/screen-recording.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_screenshot",
+      "description": "ถ่ายภาพหน้าจอหรือ element",
+      "category": "Debug และหลักฐาน",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/interactions/screenshot.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_set_value",
+      "description": "กรอกข้อความใน element",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/interactions/set-value.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_get_window_size",
+      "description": "อ่านขนาดหน้าจอ",
+      "category": "Inspect และค้นหา",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/interactions/window-size.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_prepare_ios_real_device",
+      "description": "เตรียม WebDriverAgent สำหรับอุปกรณ์ iOS จริง",
+      "category": "Device และ Session",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/ios/prepare-ios-real-device.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "prepare_ios_simulator",
+      "description": "เตรียม iOS/tvOS Simulator และ WebDriverAgent",
+      "category": "Device และ Session",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/ios/prepare-ios-simulator.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_mobile_device_control",
+      "description": "ล็อก ปลดล็อก เขย่า และเปิดแถบแจ้งเตือน",
+      "category": "Device controls",
+      "gate": "มาตรฐาน",
+      "actions": [
+        "lock",
+        "unlock",
+        "shake",
+        "open_notifications"
+      ],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/session/device-control.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_mobile_device_info",
+      "description": "อ่านข้อมูลอุปกรณ์ แบตเตอรี่ และเวลา",
+      "category": "Device และ Session",
+      "gate": "มาตรฐาน",
+      "actions": [
+        "info",
+        "battery",
+        "time"
+      ],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/session/device-info.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_driver_settings",
+      "description": "อ่านและปรับ driver settings",
+      "category": "Device และ Session",
+      "gate": "มาตรฐาน",
+      "actions": [
+        "get",
+        "update"
+      ],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/session/driver-settings.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_mobile_file",
+      "description": "รับส่งไฟล์กับอุปกรณ์",
+      "category": "Device controls",
+      "gate": "มาตรฐาน",
+      "actions": [
+        "push",
+        "pull"
+      ],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/session/file-transfer.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_geolocation",
+      "description": "อ่าน กำหนด และรีเซ็ตตำแหน่ง GPS",
+      "category": "Device controls",
+      "gate": "มาตรฐาน",
+      "actions": [
+        "get",
+        "set",
+        "reset"
+      ],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/session/geolocation.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "select_device",
+      "description": "ค้นหาและเลือกอุปกรณ์",
+      "category": "Device และ Session",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/session/select-device.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_session_management",
+      "description": "สร้าง แนบ เลือก และปิด session",
+      "category": "Device และ Session",
+      "gate": "มาตรฐาน",
+      "actions": [
+        "create",
+        "attach",
+        "detach",
+        "delete",
+        "list",
+        "select"
+      ],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/session/session.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_generate_tests",
+      "description": "สร้างโค้ดทดสอบจาก scenario",
+      "category": "Test และ Assertions",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/test-generation/generate-tests.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "generate_locators",
+      "description": "สร้าง locators สำหรับ elements ในหน้าจอ",
+      "category": "Test และ Assertions",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/tools/test-generation/locators.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_documentation_query",
+      "description": "ค้นเอกสาร Appium",
+      "category": "คู่มือและเอกสาร",
+      "gate": "APPIUM_MCP_DOCS_ENABLED + docs package",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/documentation.ts"
+    },
+    {
+      "system": "Appium",
+      "name": "appium_skills",
+      "description": "เรียกคู่มือ setup และ troubleshooting",
+      "category": "คู่มือและเอกสาร",
+      "gate": "APPIUM_MCP_DOCS_ENABLED + docs package",
+      "actions": [],
+      "source": "https://github.com/appium/appium-mcp/blob/85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b/src/documentation.ts"
+    },
+    {
+      "system": "Maestro",
+      "name": "list_devices",
+      "description": "แสดงอุปกรณ์ที่รองรับการทดสอบ",
+      "category": "Device และ Session",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-dev-inc/maestro-docs/blob/2f3de768d63810012256f1d16352ee383525cb9f/introduction/get-started/maestro-mcp.md#mcp-tools"
+    },
+    {
+      "system": "Maestro",
+      "name": "inspect_screen",
+      "description": "อ่าน view hierarchy เป็น compact JSON",
+      "category": "Inspect และค้นหา",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-dev-inc/maestro-docs/blob/2f3de768d63810012256f1d16352ee383525cb9f/introduction/get-started/maestro-mcp.md#mcp-tools"
+    },
+    {
+      "system": "Maestro",
+      "name": "take_screenshot",
+      "description": "ถ่ายภาพหน้าจอ",
+      "category": "Debug และหลักฐาน",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-dev-inc/maestro-docs/blob/2f3de768d63810012256f1d16352ee383525cb9f/introduction/get-started/maestro-mcp.md#mcp-tools"
+    },
+    {
+      "system": "Maestro",
+      "name": "run",
+      "description": "รัน YAML หรือชุด flows พร้อมตรวจ syntax",
+      "category": "Test และ Assertions",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-dev-inc/maestro-docs/blob/2f3de768d63810012256f1d16352ee383525cb9f/introduction/get-started/maestro-mcp.md#mcp-tools"
+    },
+    {
+      "system": "Maestro",
+      "name": "cheat_sheet",
+      "description": "ดูคำสั่งและตัวอย่าง Maestro",
+      "category": "คู่มือและเอกสาร",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-dev-inc/maestro-docs/blob/2f3de768d63810012256f1d16352ee383525cb9f/introduction/get-started/maestro-mcp.md#mcp-tools"
+    },
+    {
+      "system": "Maestro",
+      "name": "list_cloud_devices",
+      "description": "แสดงรุ่นและ OS ของ Cloud devices",
+      "category": "Cloud",
+      "gate": "Maestro Cloud auth",
+      "actions": [],
+      "source": "https://github.com/mobile-dev-inc/maestro-docs/blob/2f3de768d63810012256f1d16352ee383525cb9f/introduction/get-started/maestro-mcp.md#mcp-tools"
+    },
+    {
+      "system": "Maestro",
+      "name": "run_on_cloud",
+      "description": "ส่ง flow ไปทดสอบบน Maestro Cloud",
+      "category": "Cloud",
+      "gate": "Maestro Cloud auth",
+      "actions": [],
+      "source": "https://github.com/mobile-dev-inc/maestro-docs/blob/2f3de768d63810012256f1d16352ee383525cb9f/introduction/get-started/maestro-mcp.md#mcp-tools"
+    },
+    {
+      "system": "Maestro",
+      "name": "get_cloud_run_status",
+      "description": "อ่านสถานะและผลทดสอบ Cloud",
+      "category": "Cloud",
+      "gate": "Maestro Cloud auth",
+      "actions": [],
+      "source": "https://github.com/mobile-dev-inc/maestro-docs/blob/2f3de768d63810012256f1d16352ee383525cb9f/introduction/get-started/maestro-mcp.md#mcp-tools"
+    },
+    {
+      "system": "Maestro",
+      "name": "open_maestro_viewer",
+      "description": "อ่าน URL ของ Maestro Viewer",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-dev-inc/maestro-docs/blob/2f3de768d63810012256f1d16352ee383525cb9f/introduction/get-started/maestro-mcp.md#mcp-tools"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_click",
+      "description": "คลิก element",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/snapshot.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_close",
+      "description": "ปิด browser",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/common.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_console_messages",
+      "description": "อ่าน console messages",
+      "category": "Debug และหลักฐาน",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/console.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_drag",
+      "description": "ลากวางระหว่าง elements",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/snapshot.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_drop",
+      "description": "วางไฟล์หรือข้อมูลลงหน้าเว็บ",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/files.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_emulate_media",
+      "description": "จำลอง media และค่าการแสดงผล",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/emulation.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_evaluate",
+      "description": "ประเมิน JavaScript บนหน้าเว็บ",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/evaluate.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_file_upload",
+      "description": "เลือกไฟล์สำหรับ upload",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/files.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_fill_form",
+      "description": "กรอกหลายช่องในฟอร์ม",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/form.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_find",
+      "description": "ค้นหาข้อความใน accessibility snapshot",
+      "category": "Inspect และค้นหา",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/find.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_handle_dialog",
+      "description": "ยอมรับหรือปิด browser dialog",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/dialogs.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_hover",
+      "description": "เลื่อนเมาส์เหนือ element",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/snapshot.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_navigate",
+      "description": "เปิด URL",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/navigate.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_navigate_back",
+      "description": "ย้อนกลับ",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/navigate.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_network_request",
+      "description": "อ่านรายละเอียด network request",
+      "category": "Network และ Storage",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/network.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_network_requests",
+      "description": "แสดง network requests",
+      "category": "Network และ Storage",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/network.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_press_key",
+      "description": "กดปุ่มหรือ keyboard shortcut",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/keyboard.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_resize",
+      "description": "ปรับขนาด viewport",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/common.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_run_code_unsafe",
+      "description": "รันโค้ด Playwright",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/runCode.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_select_option",
+      "description": "เลือกค่า dropdown",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/snapshot.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_snapshot",
+      "description": "อ่าน accessibility snapshot",
+      "category": "Inspect และค้นหา",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/snapshot.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_take_screenshot",
+      "description": "ถ่ายภาพหน้าเว็บหรือ element",
+      "category": "Debug และหลักฐาน",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/screenshot.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_type",
+      "description": "พิมพ์ข้อความ",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/keyboard.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_wait_for",
+      "description": "รอเวลา ข้อความ หรือการหายไป",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/wait.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_tabs",
+      "description": "แสดง เปิด เลือก และปิด tabs",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/tabs.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_get_config",
+      "description": "อ่าน config ที่ resolve แล้ว",
+      "category": "Network และ Storage",
+      "gate": "--caps=config",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/config.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_network_state_set",
+      "description": "จำลองเครือข่าย online/offline",
+      "category": "Network และ Storage",
+      "gate": "--caps=network",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/network.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_route",
+      "description": "จำลอง response ของ network request",
+      "category": "Network และ Storage",
+      "gate": "--caps=network",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/route.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_route_list",
+      "description": "แสดง network routes",
+      "category": "Network และ Storage",
+      "gate": "--caps=network",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/route.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_unroute",
+      "description": "ยกเลิก network routes",
+      "category": "Network และ Storage",
+      "gate": "--caps=network",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/route.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_cookie_clear",
+      "description": "ล้าง cookies",
+      "category": "Network และ Storage",
+      "gate": "--caps=storage",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/cookies.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_cookie_delete",
+      "description": "ลบ cookie",
+      "category": "Network และ Storage",
+      "gate": "--caps=storage",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/cookies.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_cookie_get",
+      "description": "อ่าน cookie",
+      "category": "Network และ Storage",
+      "gate": "--caps=storage",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/cookies.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_cookie_list",
+      "description": "แสดง cookies",
+      "category": "Network และ Storage",
+      "gate": "--caps=storage",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/cookies.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_cookie_set",
+      "description": "กำหนด cookie",
+      "category": "Network และ Storage",
+      "gate": "--caps=storage",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/cookies.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_localstorage_clear",
+      "description": "ล้าง localStorage",
+      "category": "Network และ Storage",
+      "gate": "--caps=storage",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/webstorage.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_localstorage_delete",
+      "description": "ลบค่า localStorage",
+      "category": "Network และ Storage",
+      "gate": "--caps=storage",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/webstorage.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_localstorage_get",
+      "description": "อ่านค่า localStorage",
+      "category": "Network และ Storage",
+      "gate": "--caps=storage",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/webstorage.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_localstorage_list",
+      "description": "แสดงรายการ localStorage",
+      "category": "Network และ Storage",
+      "gate": "--caps=storage",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/webstorage.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_localstorage_set",
+      "description": "เขียนค่า localStorage",
+      "category": "Network และ Storage",
+      "gate": "--caps=storage",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/webstorage.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_sessionstorage_clear",
+      "description": "ล้าง sessionStorage",
+      "category": "Network และ Storage",
+      "gate": "--caps=storage",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/webstorage.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_sessionstorage_delete",
+      "description": "ลบค่า sessionStorage",
+      "category": "Network และ Storage",
+      "gate": "--caps=storage",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/webstorage.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_sessionstorage_get",
+      "description": "อ่านค่า sessionStorage",
+      "category": "Network และ Storage",
+      "gate": "--caps=storage",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/webstorage.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_sessionstorage_list",
+      "description": "แสดงรายการ sessionStorage",
+      "category": "Network และ Storage",
+      "gate": "--caps=storage",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/webstorage.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_sessionstorage_set",
+      "description": "เขียนค่า sessionStorage",
+      "category": "Network และ Storage",
+      "gate": "--caps=storage",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/webstorage.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_set_storage_state",
+      "description": "โหลด browser storage state",
+      "category": "Network และ Storage",
+      "gate": "--caps=storage",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/storage.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_storage_state",
+      "description": "ส่งออก browser storage state",
+      "category": "Network และ Storage",
+      "gate": "--caps=storage",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/storage.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_annotate",
+      "description": "เพิ่มคำอธิบายบนหน้าเว็บ",
+      "category": "Debug และหลักฐาน",
+      "gate": "--caps=devtools",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/devtools.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_hide_highlight",
+      "description": "ซ่อน element highlight",
+      "category": "Debug และหลักฐาน",
+      "gate": "--caps=devtools",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/devtools.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_highlight",
+      "description": "เน้น element",
+      "category": "Debug และหลักฐาน",
+      "gate": "--caps=devtools",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/devtools.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_resume",
+      "description": "ดำเนินการต่อจากการ pause",
+      "category": "Debug และหลักฐาน",
+      "gate": "--caps=devtools",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/devtools.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_start_recording",
+      "description": "เริ่มบันทึก user actions เป็นโค้ด",
+      "category": "Debug และหลักฐาน",
+      "gate": "--caps=devtools",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/recorder.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_start_tracing",
+      "description": "เริ่มบันทึก trace",
+      "category": "Debug และหลักฐาน",
+      "gate": "--caps=devtools",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/tracing.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_start_video",
+      "description": "เริ่มบันทึกวิดีโอ",
+      "category": "UI และ Navigation",
+      "gate": "--caps=devtools",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/video.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_stop_recording",
+      "description": "หยุดและรับโค้ดจากการบันทึก",
+      "category": "Debug และหลักฐาน",
+      "gate": "--caps=devtools",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/recorder.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_stop_tracing",
+      "description": "หยุดและบันทึก trace",
+      "category": "Debug และหลักฐาน",
+      "gate": "--caps=devtools",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/tracing.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_stop_video",
+      "description": "หยุดและบันทึกวิดีโอ",
+      "category": "UI และ Navigation",
+      "gate": "--caps=devtools",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/video.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_video_chapter",
+      "description": "เพิ่ม chapter ในวิดีโอ",
+      "category": "Debug และหลักฐาน",
+      "gate": "--caps=devtools",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/video.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_video_hide_actions",
+      "description": "ซ่อน action overlay ในวิดีโอ",
+      "category": "Debug และหลักฐาน",
+      "gate": "--caps=devtools",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/video.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_video_show_actions",
+      "description": "แสดง action overlay ในวิดีโอ",
+      "category": "Debug และหลักฐาน",
+      "gate": "--caps=devtools",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/video.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_mouse_click_xy",
+      "description": "คลิกตามพิกัด",
+      "category": "UI และ Navigation",
+      "gate": "--caps=vision",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/mouse.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_mouse_down",
+      "description": "กดปุ่มเมาส์ค้าง",
+      "category": "UI และ Navigation",
+      "gate": "--caps=vision",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/mouse.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_mouse_drag_xy",
+      "description": "ลากเมาส์ตามพิกัด",
+      "category": "UI และ Navigation",
+      "gate": "--caps=vision",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/mouse.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_mouse_move_xy",
+      "description": "เลื่อนเมาส์ตามพิกัด",
+      "category": "UI และ Navigation",
+      "gate": "--caps=vision",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/mouse.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_mouse_up",
+      "description": "ปล่อยปุ่มเมาส์",
+      "category": "UI และ Navigation",
+      "gate": "--caps=vision",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/mouse.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_mouse_wheel",
+      "description": "เลื่อนด้วย mouse wheel",
+      "category": "UI และ Navigation",
+      "gate": "--caps=vision",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/mouse.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_pdf_save",
+      "description": "ส่งออกหน้าเว็บเป็น PDF",
+      "category": "Debug และหลักฐาน",
+      "gate": "--caps=pdf",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/pdf.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_generate_locator",
+      "description": "สร้าง locator สำหรับใช้ใน test",
+      "category": "Test และ Assertions",
+      "gate": "--caps=testing",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/snapshot.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_verify_element_visible",
+      "description": "ตรวจว่า element ปรากฏ",
+      "category": "Test และ Assertions",
+      "gate": "--caps=testing",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/verify.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_verify_list_visible",
+      "description": "ตรวจรายการที่มองเห็น",
+      "category": "Test และ Assertions",
+      "gate": "--caps=testing",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/verify.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_verify_text_visible",
+      "description": "ตรวจว่าข้อความปรากฏ",
+      "category": "Test และ Assertions",
+      "gate": "--caps=testing",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/verify.ts"
+    },
+    {
+      "system": "Playwright",
+      "name": "browser_verify_value",
+      "description": "ตรวจค่าของ element",
+      "category": "Test และ Assertions",
+      "gate": "--caps=testing",
+      "actions": [],
+      "source": "https://github.com/microsoft/playwright/blob/main/packages/playwright-core/src/tools/backend/verify.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_list_available_devices",
+      "description": "แสดง devices, simulators และ emulators",
+      "category": "Device และ Session",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_get_screen_size",
+      "description": "อ่านขนาดหน้าจอ",
+      "category": "Inspect และค้นหา",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_get_orientation",
+      "description": "อ่านแนวหน้าจอ",
+      "category": "Device controls",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_set_orientation",
+      "description": "เปลี่ยนแนวหน้าจอ",
+      "category": "Device controls",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_fold_device",
+      "description": "พับและกาง foldable device",
+      "category": "Device controls",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_set_location",
+      "description": "กำหนดหรือล้างตำแหน่ง GPS จำลอง",
+      "category": "Device controls",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_clipboard",
+      "description": "อ่านและแทนข้อความใน clipboard",
+      "category": "Device controls",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_login_to_cloud_provider",
+      "description": "เริ่มยืนยันตัวตนกับ Cloud provider",
+      "category": "Cloud",
+      "gate": "Cloud provider auth",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_list_remote_devices",
+      "description": "แสดงรุ่นอุปกรณ์ใน Cloud fleet",
+      "category": "Cloud",
+      "gate": "Cloud provider auth",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_allocate_remote_device",
+      "description": "จอง Cloud device",
+      "category": "Cloud",
+      "gate": "Cloud provider auth",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_release_remote_device",
+      "description": "คืน Cloud device",
+      "category": "Cloud",
+      "gate": "Cloud provider auth",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_list_apps",
+      "description": "แสดงแอปที่ติดตั้ง",
+      "category": "App และ Context",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_get_foreground_app",
+      "description": "อ่านแอปที่อยู่ foreground",
+      "category": "App และ Context",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_launch_app",
+      "description": "เปิดแอป",
+      "category": "App และ Context",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_terminate_app",
+      "description": "หยุดแอป",
+      "category": "App และ Context",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_install_app",
+      "description": "ติดตั้งแอป",
+      "category": "App และ Context",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_uninstall_app",
+      "description": "ถอนการติดตั้งแอป",
+      "category": "App และ Context",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_take_screenshot",
+      "description": "ส่งภาพหน้าจอกลับให้ agent",
+      "category": "Debug และหลักฐาน",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_save_screenshot",
+      "description": "บันทึกภาพหน้าจอลงไฟล์",
+      "category": "Debug และหลักฐาน",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_list_elements_on_screen",
+      "description": "แสดง elements, refs และพิกัด",
+      "category": "Inspect และค้นหา",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_click_on_screen_at_coordinates",
+      "description": "แตะตามพิกัดหรือ ref",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_double_tap_on_screen",
+      "description": "แตะสองครั้งตามพิกัดหรือ ref",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_long_press_on_screen_at_coordinates",
+      "description": "กดค้างตามพิกัดหรือ ref",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_swipe_on_screen",
+      "description": "ปัดหน้าจอตามทิศทาง",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_start_screen_recording",
+      "description": "เริ่มบันทึกวิดีโอ",
+      "category": "Debug และหลักฐาน",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_stop_screen_recording",
+      "description": "หยุดและบันทึกวิดีโอ",
+      "category": "Debug และหลักฐาน",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_type_keys",
+      "description": "พิมพ์ข้อความและกด submit",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_press_button",
+      "description": "กดปุ่มอุปกรณ์",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_open_url",
+      "description": "เปิด URL ใน browser ของอุปกรณ์",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_get_device_logs",
+      "description": "อ่านและบันทึก device logs",
+      "category": "Debug และหลักฐาน",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_list_crashes",
+      "description": "แสดง crash reports",
+      "category": "Debug และหลักฐาน",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_get_crash",
+      "description": "อ่าน crash report",
+      "category": "Debug และหลักฐาน",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    },
+    {
+      "system": "Mobile MCP",
+      "name": "mobile_batch_commands",
+      "description": "สั่งหลาย tools เป็นลำดับ",
+      "category": "UI และ Navigation",
+      "gate": "มาตรฐาน",
+      "actions": [],
+      "source": "https://github.com/mobile-next/mobile-mcp/blob/c659f8ee34873a832adea7daca9c69172d887e70/src/server.ts"
+    }
+  ],
+  "revisions": [
+    {
+      "repo": "appium/appium-mcp",
+      "sha": "85ae0c7702f4f752fa7eeb5f0f329326aee7ff1b",
+      "date": "2026-10-19T15:35:14Z"
+    },
+    {
+      "repo": "microsoft/playwright-mcp",
+      "sha": "ab6d67cbf8b619338f096980806fdbe29432cc4d",
+      "date": "2026-10-19T15:31:50Z"
+    },
+    {
+      "repo": "mobile-next/mobile-mcp",
+      "sha": "c659f8ee34873a832adea7daca9c69172d887e70",
+      "date": "2026-10-18T18:48:04Z"
+    },
+    {
+      "repo": "mobile-dev-inc/maestro-docs",
+      "sha": "2f3de768d63810012256f1d16352ee383525cb9f",
+      "date": "2026-10-05T11:54:40Z"
+    }
+  ]
+}
+

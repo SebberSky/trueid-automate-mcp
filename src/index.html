@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="description" content="รายการ MCP automation tools 149 ชื่อ จาก Appium, Maestro, Playwright และ Mobile MCP พร้อมค้นหา กรอง และ source อ้างอิง">
+<title>MCP Tool Index — 149 Automation Tools</title>
+<style>
+:root{--paper:#f7f6f2;--surface:#fff;--ink:#20231f;--muted:#656b63;--line:#dcdfd6;--soft:#eeeee7;--accent:#a34228;--tint:#f6ebe5;--mono:ui-monospace,SFMono-Regular,Consolas,monospace}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif}button,input,select{font:inherit}button,a,input,select,summary{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a{color:var(--accent);text-underline-offset:3px}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}button:disabled{cursor:default}main{max-width:1480px;margin:auto;padding:32px 36px 50px}.masthead{display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--ink);padding-bottom:15px}.wordmark{font-family:var(--mono);font-size:12px;letter-spacing:.08em;font-weight:700}.edition{font-size:12px;color:var(--muted)}.hero{display:grid;grid-template-columns:1fr 190px;gap:30px;align-items:center;padding:36px 0 28px}.eyebrow{color:var(--accent);font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}h1{font-size:clamp(29px,3.8vw,44px);font-weight:650;line-height:1.2;letter-spacing:-.035em;margin:12px 0 14px}h2{font-size:20px;line-height:1.4;margin:0;font-weight:650}h3{font-size:14px;margin:0 0 7px}.lead{max-width:840px;color:var(--muted);margin:0;font-size:15px}.total{text-align:right;border-left:1px solid var(--line);padding-left:28px}.total strong{display:block;font-family:var(--mono);font-size:68px;font-weight:500;line-height:1.1;letter-spacing:-.06em}.total span{font-size:12px;color:var(--muted)}.server-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}.server{display:flex;text-align:left;flex-direction:column;gap:10px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);padding:17px 18px;transition:border-color .15s}.server:hover{border-color:var(--muted)}.server[aria-pressed=true]{border-color:var(--accent);background:var(--tint)}.server-top{display:flex;align-items:center;justify-content:space-between;gap:8px;font-weight:650}.server-count{font:26px/1 var(--mono);font-weight:400}.server-note{font-size:12px;color:var(--muted)}.context{display:flex;align-items:baseline;gap:12px;border-left:3px solid var(--accent);padding:9px 16px;background:var(--soft);font-size:13px;margin-bottom:30px}.context strong{white-space:nowrap}.context p{margin:0;color:var(--muted)}.section-head{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:0 0 16px}.plain-button{border:0;background:transparent;padding:5px 0;color:var(--accent);font-size:13px;text-decoration:underline;text-underline-offset:4px}.toolbar{display:grid;grid-template-columns:minmax(200px,1fr) 240px 220px;gap:12px;margin-bottom:12px}label{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--muted)}input,select{height:43px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:9px 12px;color:var(--ink);width:100%;min-width:0}input::placeholder{color:#858b80}input:focus,select:focus{border-color:var(--accent)}.results-bar{display:flex;justify-content:space-between;align-items:center;gap:14px;font-size:12px;color:var(--muted);margin-bottom:12px}.all-filter{border:1px solid var(--line);border-radius:50px;background:var(--surface);padding:5px 13px;font-size:12px;color:var(--ink)}.all-filter[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:var(--surface)}.results-grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;align-items:start}.table-shell{border:1px solid var(--line);border-radius:9px;background:var(--surface);overflow:auto;max-height:690px}table{border-collapse:collapse;width:100%;text-align:left;font-size:13px}th{position:sticky;top:0;background:var(--soft);z-index:1;border-bottom:1px solid var(--line);font-size:11px;font-weight:650;color:var(--muted);padding:12px 15px;white-space:nowrap}td{border-bottom:1px solid var(--line);padding:13px 15px;vertical-align:top}tr:last-child td{border-bottom:0}tbody tr:hover{background:var(--paper)}tr.selected{background:var(--tint)}.system-cell{font-size:11px;color:var(--muted);min-width:86px}.tool-button{font:12px/1.65 var(--mono);background:none;border:0;padding:0;text-align:left;overflow-wrap:anywhere;color:var(--ink);font-weight:550;max-width:285px}.tool-button:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}.tool-cell{min-width:200px;width:35%}.description-cell{min-width:170px}.gate-label{display:inline-block;font-size:10px;line-height:1.5;padding:3px 6px;border:1px solid var(--line);border-radius:4px;color:var(--muted);max-width:160px;overflow-wrap:anywhere}.gate-label.extra{color:var(--accent);border-color:#e1c6b8;background:var(--tint)}.detail{position:sticky;top:20px;background:var(--surface);border:1px solid var(--line);border-radius:9px;overflow:hidden}.detail-head{padding:14px 18px;background:var(--soft);font-size:11px;display:flex;justify-content:space-between;align-items:center}.detail-body{padding:20px 18px}.detail-system{font:11px var(--mono);color:var(--accent)}.detail-name{font:15px/1.7 var(--mono);overflow-wrap:anywhere;margin:10px 0 14px;font-weight:600}.detail-description{font-size:14px;margin:0 0 20px}.detail dl{font-size:12px;margin:0}.detail dt{color:var(--muted);margin-top:14px}.detail dd{margin:3px 0 0;overflow-wrap:anywhere}.actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.actions code{font:11px var(--mono);padding:5px 7px;border-radius:4px;background:var(--soft)}.detail-source{display:inline-block;font-size:12px;margin-top:24px}.copy{border:1px solid var(--line);background:var(--surface);padding:3px 8px;border-radius:4px;font-size:11px;color:var(--ink)}.empty{padding:40px 20px;text-align:center;color:var(--muted)}[hidden]{display:none!important}.notes{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:34px 0 28px;padding-top:24px;border-top:1px solid var(--line)}.notes p{font-size:13px;color:var(--muted);margin:7px 0}.notes code{font-size:12px}.source-details{border-top:1px solid var(--line);padding-top:18px}.source-details summary{cursor:pointer;font-size:13px;font-weight:600}.source-details p{font-size:12px;color:var(--muted)}.source-details ul{list-style:none;padding:0;margin:14px 0;display:grid;grid-template-columns:1fr 1fr;gap:12px}.source-details li{font-size:12px;overflow-wrap:anywhere}.source-date{display:block;font-size:11px;color:var(--muted);margin-top:3px}.footer{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);margin-top:25px;padding-top:14px;color:var(--muted);font-size:11px}.notice{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--surface);font-size:13px;padding:10px 18px;border-radius:7px;z-index:5}.skip-link{position:absolute;left:12px;top:-100px;padding:10px;background:var(--surface);z-index:10}.skip-link:focus{top:12px}
+@media(max-width:1160px){main{padding:26px 24px}.results-grid{grid-template-columns:minmax(0,1fr) 280px}.toolbar{grid-template-columns:1fr 210px 180px}.table-shell{max-height:640px}.description-cell{min-width:150px}.gate-cell{display:none}}
+@media(max-width:900px){.results-grid{grid-template-columns:1fr}.detail{position:static}.detail-body{display:grid;grid-template-columns:1fr 1fr;gap:0 22px}.detail-name,.detail-description{grid-column:1/-1}.detail-system{grid-column:1/-1}.detail-source{margin-top:12px;align-self:end}.gate-cell{display:table-cell}.toolbar{grid-template-columns:1fr 1fr}.search-label{grid-column:1/-1}.context{display:block}.context strong{display:block;margin-bottom:4px}}
+@media(max-width:620px){main{padding:18px 16px 32px}.edition{max-width:135px;text-align:right;font-size:10px}.hero{grid-template-columns:1fr;gap:18px;padding:25px 0 20px}.total{display:none}.server-grid{grid-template-columns:1fr 1fr;gap:9px}.server{padding:13px}.server-count{font-size:23px}.server-note{font-size:11px}.toolbar{grid-template-columns:1fr}.search-label{grid-column:auto}.section-head{align-items:start}.section-head h2{font-size:18px}.results-bar{align-items:start}.table-shell{max-height:570px}th,td{padding:11px 12px}.description-cell{display:none}.tool-cell{min-width:170px}.system-cell{min-width:75px}.gate-cell{display:none}.detail-body{display:block}.notes{grid-template-columns:1fr;gap:20px}.source-details ul{grid-template-columns:1fr}.footer{flex-direction:column;gap:5px}.lead{font-size:14px}.wordmark{font-size:11px}}
+@media print{main{max-width:none;padding:0}.toolbar,.all-filter,.plain-button,.copy,.notice,.skip-link{display:none!important}.results-grid{display:block}.table-shell{max-height:none;overflow:visible;border:0}.detail{position:static;margin-top:20px;break-inside:avoid}th{position:static}.server-grid{grid-template-columns:repeat(4,1fr)}.notes{break-inside:avoid}.source-details{display:block}.gate-cell,.description-cell{display:table-cell}a{color:inherit}.tool-button{max-width:none}}
+
+.analysis{border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:20px;margin:0 0 26px}.analysis-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:18px 0}.analysis-stat strong{display:block;font:27px var(--mono)}.analysis-stat span{font-size:12px;color:var(--muted)}.analysis-note{font-size:13px;color:var(--muted);margin:10px 0}.view-tabs{display:flex;gap:7px;flex-wrap:wrap;padding-top:14px;border-top:1px solid var(--line)}.view-tab{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:7px 10px;font-size:12px;color:var(--ink)}.view-tab[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:var(--surface)}.review-pill{display:block;font-size:10px;line-height:1.4;color:var(--muted);font-family:inherit;margin-top:7px}.review-pill.uncertain{color:var(--accent)}.detail-review{margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}.detail-review p{font-size:12px}.function-list{margin:7px 0;padding-left:17px;font:11px/1.8 var(--mono);overflow-wrap:anywhere}.related-tools{display:flex;flex-direction:column;gap:6px;margin-top:10px}.related-tools button{font:11px/1.6 var(--mono);text-align:left;border:1px solid var(--line);border-radius:5px;padding:7px;background:var(--paper);overflow-wrap:anywhere;color:var(--ink)}.comparison{margin-top:24px}.comparison h2{margin-bottom:10px}.comparison-table{overflow:auto;border:1px solid var(--line);border-radius:7px;background:var(--surface)}.comparison-table th{position:static;white-space:normal;overflow-wrap:anywhere}.comparison-table td{min-width:190px;max-width:460px}.comparison-table th:first-child,.comparison-table td:first-child{min-width:100px;width:15%}.method{font-size:12px;margin-top:13px}.method summary{cursor:pointer;font-weight:600}.method ul{color:var(--muted);padding-left:20px}.toolbar{grid-template-columns:minmax(180px,1fr) 180px 210px 175px}.review-tag{font-size:11px;color:var(--accent)}.exact-outcome{font-weight:600;color:var(--ink)}.source-details li{margin-bottom:4px}
+@media(max-width:1200px){.toolbar{grid-template-columns:1fr 1fr}.analysis-stats{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:620px){.toolbar{grid-template-columns:1fr}.analysis{padding:16px}.analysis-stats{grid-template-columns:1fr 1fr}.view-tab{font-size:11px}.comparison-table td{min-width:170px}}
+@media print{.view-tabs,.related-tools{display:none}.analysis{break-inside:avoid}.comparison-table{overflow:visible}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#catalog">ไปยังรายการ tools</a>
+<main>
+<header class="masthead"><span class="wordmark">MCP / TOOL INDEX</span><span class="edition">Research edition · 22 ตุลาคม 2026</span></header>
+<section class="hero" aria-labelledby="page-title">
+  <div><div class="eyebrow">Automation capabilities, mapped.</div><h1 id="page-title">สำรวจ MCP automation tools</h1><p class="lead">รายชื่อและความสามารถของ Appium, Maestro, Playwright และ Mobile MCP สำหรับใช้ออกแบบ MCP ให้คนอื่นใช้งาน ตั้งแต่จัดการอุปกรณ์ อ่านหน้าจอ สั่งงาน UI ไปจนถึงทดสอบและ debug</p></div>
+  <div class="total"><strong>149</strong><span>built-in tool names · 4 servers</span></div>
+</section>
+<nav id="servers" class="server-grid" aria-label="เลือก MCP server"></nav>
+<aside class="context"><strong>Mobilewright → Mobile MCP</strong><p>Mobilewright เป็น framework สำหรับเขียน tests ส่วนรายการ MCP tools ฝั่งนี้มาจาก Mobile MCP ซึ่งใช้ MobileCLI เป็น runtime ร่วมกัน <a href="https://mobilenext.ai/docs/architecture/" target="_blank" rel="noopener noreferrer">อ่าน architecture ↗</a></p></aside>
+<section class="analysis" aria-labelledby="analysis-title">
+ <div class="section-head"><h2 id="analysis-title">แยกความสามารถและตัดซ้ำเฉพาะ 100%</h2><span class="review-tag">SOURCE REVIEW · 64 FILES</span></div>
+ <div id="analysis-stats" class="analysis-stats"></div>
+ <p id="analysis-conclusion" class="analysis-note exact-outcome"></p>
+ <p class="analysis-note">ชุด functions, target/platform, options, ผลลัพธ์ และเงื่อนไขรองรับต้องเทียบเท่ากันครบจึงซ่อน ชื่อคล้ายหรือเป็น subset/superset จะเก็บทั้งคู่ ไม่มีการใช้คะแนนความคล้ายของข้อความเป็นเปอร์เซ็นต์ความเทียบเท่า</p>
+ <details class="method"><summary>เกณฑ์การตัดสินและข้อจำกัด</summary><ul id="review-criteria"></ul><p class="analysis-note" id="review-limitation"></p></details>
+ <div id="review-views" class="view-tabs" aria-label="ผลการกรองความสามารถ"></div>
+</section>
+<section id="catalog" aria-labelledby="catalog-title">
+  <div class="section-head"><h2 id="catalog-title">Tool directory</h2><button id="reset" class="plain-button" type="button">ล้างตัวกรอง</button></div>
+  <div class="toolbar">
+    <label class="search-label" for="search">ค้นหาชื่อ tool / ความสามารถ / action<input id="search" type="search" placeholder="เช่น swipe, storage, session, video" autocomplete="off"></label>
+    <label for="category">หมวดความสามารถ<select id="category"><option value="all">ทุกหมวด</option></select></label>
+    <label for="family">กลุ่มที่ต้องเปรียบเทียบ<select id="family"><option value="all">ทุกกลุ่มความสามารถ</option></select></label>
+    <label for="gate">เงื่อนไขเปิดใช้<select id="gate"><option value="all">ทุกเงื่อนไข</option><option value="standard">มาตรฐาน</option><option value="extra">เปิดเพิ่ม / Cloud auth</option></select></label>
+  </div>
+  <div class="results-bar"><button id="all-systems" class="all-filter" type="button" aria-pressed="true">ทุก server · 149</button><span id="result-count" role="status" aria-live="polite"></span></div>
+  <div class="results-grid">
+    <div class="table-shell" tabindex="0" role="region" aria-label="ตาราง MCP tools ที่ตรงตัวกรอง">
+      <table><thead><tr><th scope="col">SERVER</th><th scope="col">TOOL NAME</th><th scope="col" class="description-cell">ความสามารถ</th><th scope="col" class="gate-cell">เงื่อนไข</th></tr></thead><tbody id="tool-rows"></tbody></table>
+      <div id="empty" class="empty" hidden>ไม่พบ tool ที่ตรงกับตัวกรองนี้<br><button id="empty-reset" class="plain-button" type="button">แสดง tools ทั้งหมด</button></div>
+    </div>
+    <aside id="detail" class="detail" aria-label="รายละเอียด tool"><div class="detail-head"><span>TOOL DETAILS</span><button type="button" id="copy" class="copy">คัดลอกชื่อ</button></div><div id="detail-body" class="detail-body"></div></aside>
+  </div>
+</section>
+<section id="comparison" class="comparison" aria-labelledby="comparison-title">
+<h2 id="comparison-title">เทียบความสามารถแบบคู่ต่อคู่</h2>
+<p id="comparison-reason" class="analysis-note"></p><div id="comparison-table" class="comparison-table"></div>
+</section>
+<section class="notes" aria-label="ข้อสังเกตจากการสำรวจ">
+  <div><h3>หนึ่ง tool อาจมีหลายคำสั่ง</h3><p>Appium รวมหลาย action ไว้ใน tool เดียว เช่น <code>appium_app_lifecycle</code> รองรับ 10 actions ส่วน Maestro ใช้ <code>run</code> เป็นทางเข้าของ YAML flows ที่มีคำสั่ง UI และ assertions อีกจำนวนมาก</p></div>
+  <div><h3>จำนวนนี้รวม tools ที่ต้องเปิดเพิ่ม</h3><p>Playwright มี 25 tools มาตรฐาน และ 47 tools ที่เปิดผ่าน <code>--caps</code> ส่วน Appium มี AI และ documentation tools แบบ opt-in และ Cloud tools ต้องมีสิทธิ์ของ service ที่ให้บริการ</p></div>
+</section>
+<details class="source-details"><summary>แหล่งข้อมูล เวอร์ชัน และขอบเขตการสำรวจ</summary>
+  <p>นับชื่อ built-in tools ที่ไม่ซ้ำภายในแต่ละ server รวมตัวเลือกเสริม ไม่รวม custom plugins, tools ที่เว็บลงทะเบียนเพิ่ม หรือ SDK/CLI APIs ที่ไม่ได้เปิดเป็น MCP tools</p>
+  <p>Appium เทียบ README กับจุดลงทะเบียนใน source; Playwright เทียบรายการใน README กับ backend registry และตัด skillOnly ออก; Mobile MCP เทียบ README กับ src/server.ts; Maestro อ้างอิงตาราง tools ในเอกสารปัจจุบัน</p>
+  <ul id="revision-list"></ul>
+  <p>เวอร์ชัน npm ที่ตรวจ: appium-mcp 1.97.1 · @playwright/mcp 0.0.83 · @mobilenext/mobile-mcp 1.0.12 · Mobilewright 0.0.67 ส่วน Maestro อ้างอิงเอกสาร upstream โดยไม่ผูกกับเลข release ที่ยังไม่ได้ยืนยัน</p>
+  <p>เป็นการสำรวจเอกสารและ source ณ 22 ตุลาคม 2026 ความสามารถจริงขึ้นกับ platform, driver, context และ configuration ของ deployment นั้น</p>
+</details>
+<footer class="footer"><span>149 tools · Appium 35 / Maestro 9 / Playwright 72 / Mobile MCP 33</span><span><a href="https://github.com/SebberSky/trueid-automate-mcp" target="_blank" rel="noopener noreferrer">GitHub source</a> · <a href="https://github.com/SebberSky/trueid-automate-mcp/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a> · Public</span></footer>
+<noscript><p>เปิด JavaScript เพื่อดูรายการ ค้นหา และกรอง tools ในไฟล์นี้</p></noscript>
+</main>
+<div id="notice" class="notice" role="status" hidden></div>
+<script id="inventory-data" type="application/json">__CATALOG_JSON__</script>
+<script id="review-logic">__REVIEW_LOGIC__</script>
+<script>
+"use strict";
+const inventory = JSON.parse(document.getElementById("inventory-data").textContent);
+const tools = inventory.tools;
+const review = inventory.review;
+const summary = reviewSummary(tools, review);
+const systems = ["Appium", "Maestro", "Playwright", "Mobile MCP"];
+const meta = {
+  "Appium": { note: "32 มาตรฐาน + 3 opt-in", version: "appium-mcp 1.97.1" },
+  "Maestro": { note: "6 ทั่วไป + 3 Cloud tools", version: "เอกสาร upstream" },
+  "Playwright": { note: "25 มาตรฐาน + 47 opt-in", version: "@playwright/mcp 0.0.83" },
+  "Mobile MCP": { note: "29 ทั่วไป + 4 Cloud tools", version: "@mobilenext/mobile-mcp 1.0.12" }
+};
+const state = { system: "all", selected: "Appium:appium_orientation", view: "kept", family: "all", compare: "Mobile MCP:mobile_get_orientation" };
+const $ = id => document.getElementById(id);
+const escapeHTML = value => String(value).replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+const key = tool => tool.system + ":" + tool.name;
+const categorySelect = $("category");
+for (const category of [...new Set(tools.map(tool => tool.category))].sort((a,b) => a.localeCompare(b,"th"))) {
+  const option = document.createElement("option");
+  option.value = category;
+  option.textContent = category;
+  categorySelect.append(option);
+}
+$("servers").innerHTML = systems.map(system => '<button type="button" class="server" data-system="' + escapeHTML(system) + '" aria-pressed="false"><span class="server-top"><span>' + escapeHTML(system) + '</span><span class="server-count">' + tools.filter(t => t.system === system).length + '</span></span><span class="server-note">' + escapeHTML(meta[system].note) + '</span></button>').join("");
+$("revision-list").innerHTML = inventory.revisions.map(rev => '<li><a href="https://github.com/' + escapeHTML(rev.repo) + '/commit/' + escapeHTML(rev.sha) + '" target="_blank" rel="noopener noreferrer">' + escapeHTML(rev.repo) + ' ↗</a><span class="source-date">' + escapeHTML(rev.sha.slice(0,12)) + ' · ' + escapeHTML(rev.date) + '</span></li>').join("");
+function filteredTools() {
+  const query = $("search").value.trim().toLocaleLowerCase();
+  const category = categorySelect.value;
+  const gate = $("gate").value;
+  return reviewTools(tools, review, state.view).filter(tool => (state.family === "all" || review.profiles[key(tool)].comparisonGroups.includes(state.family))
+    && (state.system === "all" || tool.system === state.system)
+    && (category === "all" || tool.category === category)
+    && (gate === "all" || (gate === "standard" ? tool.gate === "มาตรฐาน" : tool.gate !== "มาตรฐาน"))
+    && (!query || [tool.name, tool.description, tool.category, tool.system, tool.gate, ...tool.actions].join(" ").toLocaleLowerCase().includes(query)));
+}
+function render() {
+  const visible = filteredTools();
+  $("result-count").textContent = "แสดง " + visible.length + " จาก " + summary.total + " tools · ซ่อนซ้ำ 100% " + summary.removed + " · กดชื่อเพื่อดูเหตุผล";
+  $("empty").firstChild.textContent = state.view === "exact" ? "ยังไม่มีคู่ที่ยืนยันว่าซ้ำครบ 100%; จึงยังไม่มีรายการที่ซ่อน" : "ไม่พบ tool ที่ตรงกับตัวกรองนี้";
+  renderReviewViews();
+  $("empty").hidden = visible.length > 0;
+  $("tool-rows").innerHTML = visible.map(tool => '<tr class="' + (key(tool) === state.selected ? 'selected' : '') + '"><td class="system-cell">' + escapeHTML(tool.system) + '</td><td class="tool-cell"><button type="button" class="tool-button" data-tool="' + escapeHTML(key(tool)) + '" aria-pressed="' + (key(tool) === state.selected) + '">' + escapeHTML(tool.name) + '</button><span class="review-pill ' + review.profiles[key(tool)].status + '">' + escapeHTML(statusLabel(tool)) + '</span></td><td class="description-cell">' + escapeHTML(tool.description) + '</td><td class="gate-cell"><span class="gate-label ' + (tool.gate === "มาตรฐาน" ? "" : "extra") + '">' + escapeHTML(tool.gate) + '</span></td></tr>').join("");
+  for (const button of $("servers").querySelectorAll("[data-system]")) button.setAttribute("aria-pressed", String(button.dataset.system === state.system));
+  $("all-systems").setAttribute("aria-pressed", String(state.system === "all"));
+  renderDetail();
+}
+function renderDetail() {
+  const tool = tools.find(t => key(t) === state.selected);
+  if (!tool) { $("detail").hidden = true; return; }
+  $("detail").hidden = false;
+  $("detail-body").innerHTML = '<div class="detail-system">' + escapeHTML(tool.system) + '</div><h3 class="detail-name">' + escapeHTML(tool.name) + '</h3><p class="detail-description">' + escapeHTML(tool.description) + '</p><dl><dt>หมวดความสามารถ</dt><dd>' + escapeHTML(tool.category) + '</dd><dt>เงื่อนไขเปิดใช้</dt><dd>' + escapeHTML(tool.gate) + '</dd><dt>เวอร์ชันอ้างอิง</dt><dd>' + escapeHTML(meta[tool.system].version) + '</dd>' + (tool.actions.length ? '<dt>Actions ภายใน tool</dt><dd class="actions">' + tool.actions.map(action => '<code>' + escapeHTML(action) + '</code>').join("") + '</dd>' : "") + '</dl><a class="detail-source" href="' + escapeHTML(tool.source) + '" target="_blank" rel="noopener noreferrer">เปิด source / เอกสารของ tool นี้ ↗</a>';
+  renderAnalysisDetail(tool);
+  renderComparison(tool);
+}
+function reset() {
+  state.system = "all";
+  state.view = "kept";
+  state.family = "all";
+  $("family").value = "all";
+  $("search").value = "";
+  categorySelect.value = "all";
+  $("gate").value = "all";
+  render();
+}
+$("servers").addEventListener("click", event => {
+  const button = event.target.closest("button[data-system]");
+  if (!button) return;
+  state.system = button.dataset.system;
+  const visible = filteredTools();
+  if (visible.length && !visible.some(tool => key(tool) === state.selected)) state.selected = key(visible[0]);
+  render();
+});
+$("all-systems").addEventListener("click", () => { state.system = "all"; render(); });
+$("tool-rows").addEventListener("click", event => {
+  const button = event.target.closest("button[data-tool]");
+  if (!button) return;
+  state.selected = button.dataset.tool;
+  for (const rowButton of $("tool-rows").querySelectorAll("[data-tool]")) {
+    const isSelected = rowButton.dataset.tool === state.selected;
+    rowButton.setAttribute("aria-pressed", String(isSelected));
+    rowButton.closest("tr").classList.toggle("selected", isSelected);
+  }
+  renderDetail();
+  if (window.matchMedia("(max-width: 900px)").matches) $("detail").scrollIntoView({ behavior: "smooth", block: "nearest" });
+});
+$("search").addEventListener("input", render);
+categorySelect.addEventListener("change", render);
+$("gate").addEventListener("change", render);
+$("reset").addEventListener("click", reset);
+$("empty-reset").addEventListener("click", reset);
+let noticeTimer;
+function notify(message) {
+  $("notice").textContent = message;
+  $("notice").hidden = false;
+  clearTimeout(noticeTimer);
+  noticeTimer = setTimeout(() => { $("notice").hidden = true; }, 2400);
+}
+$("copy").addEventListener("click", async () => {
+  const tool = tools.find(t => key(t) === state.selected);
+  if (!tool) return;
+  try {
+    if (!navigator.clipboard || !window.isSecureContext) throw new Error("Clipboard unavailable");
+    await navigator.clipboard.writeText(tool.name);
+    notify("คัดลอกชื่อ tool แล้ว");
+  } catch {
+    const range = document.createRange();
+    range.selectNodeContents(document.querySelector(".detail-name"));
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    notify("เลือกชื่อ tool แล้ว · กด Ctrl/Cmd+C เพื่อคัดลอก");
+  }
+});
+
+function statusLabel(tool) {
+  const k=key(tool);
+  if (exactDuplicateMap(tools,review).has(k)) return "ซ้ำ 100% — ซ่อนในมุมมองตัดซ้ำ";
+  const status=review.profiles[k].status;
+  return status === "partial" ? "มีส่วนคล้าย/ทับซ้อน — เก็บ" : status === "uncertain" ? "ยังยืนยันไม่ได้ — เก็บ" : "ไม่พบคู่ซ้ำ — เก็บ";
+}
+function renderReviewViews() {
+  const views=[["kept","หลังตัดซ้ำ 100%",summary.retained],["all","ทั้งหมด",summary.total],["partial","คล้ายบางส่วน — เก็บ",summary.partial],["uncertain","ยังยืนยันไม่ได้ — เก็บ",summary.uncertain],["distinct","ไม่พบคู่ซ้ำ",summary.distinct],["exact","ซ้ำ 100% ที่ซ่อน",summary.removed]];
+  $("review-views").innerHTML=views.map(([id,label,count])=>'<button type="button" class="view-tab" data-view="'+id+'" aria-pressed="'+(state.view===id)+'">'+escapeHTML(label)+' · '+count+'</button>').join("");
+}
+function relatedTo(tool) {
+  const own=key(tool);
+  const groupIds=review.profiles[own].comparisonGroups;
+  const relatedKeys=new Set(review.groups.filter(g=>groupIds.includes(g.id)).flatMap(g=>g.members.map(m=>m.key)));
+  relatedKeys.delete(own);
+  return tools.filter(t=>relatedKeys.has(key(t)));
+}
+function renderAnalysisDetail(tool) {
+  const p=review.profiles[key(tool)];
+  const peers=relatedTo(tool);
+  const container=document.createElement("section");
+  container.className="detail-review";
+  container.innerHTML='<h3>'+escapeHTML(statusLabel(tool))+'</h3><p>'+escapeHTML(p.reason)+'</p><h3>Functions ที่แยกได้</h3><ul class="function-list">'+p.functions.map(f=>'<li>'+escapeHTML(f)+'</li>').join("")+'</ul>'+(peers.length?'<h3>เลือก tool เพื่อเทียบ</h3><div class="related-tools">'+peers.map(t=>'<button type="button" data-compare="'+escapeHTML(key(t))+'">'+escapeHTML(t.system+" · "+t.name)+'</button>').join("")+'</div>':"");
+  $("detail-body").append(container);
+}
+function renderComparison(tool) {
+  const peers=relatedTo(tool);
+  if (!peers.length) { $("comparison").hidden=true; return; }
+  $("comparison").hidden=false;
+  const peer=peers.find(t=>key(t)===state.compare)||peers[0];
+  state.compare=key(peer);
+  const a=review.profiles[key(tool)],b=review.profiles[key(peer)];
+  const shared=a.functions.filter(f=>b.functions.includes(f));
+  const onlyA=a.functions.filter(f=>!b.functions.includes(f));
+  const onlyB=b.functions.filter(f=>!a.functions.includes(f));
+  $("comparison-reason").textContent=shared.length
+    ?"มี functions ร่วมกัน "+shared.length+" รายการ แต่ยังไม่ยืนยันว่าเทียบเท่ากันครบทุกมิติ จึงเก็บทั้งคู่"
+    :"อยู่ในกลุ่มการใช้งานใกล้เคียงกัน แต่ functions/target ที่แยกไว้ต่างกัน จึงเก็บทั้งคู่";
+  const list=items=>items.length?'<ul class="function-list">'+items.map(f=>'<li>'+escapeHTML(f)+'</li>').join("")+'</ul>':"ไม่มี function เพิ่มในระดับรายการนี้ — ยังต้องเทียบ scope/options/เงื่อนไข";
+  const rows=[
+    ["Functions ทั้งชุด",list(a.functions),list(b.functions)],
+    ["Functions ที่อีกตัวไม่มี",list(onlyA),list(onlyB)],
+    ["ขอบเขต",escapeHTML(a.scope),escapeHTML(b.scope)],
+    ["ความต่างที่ต้องเก็บ",escapeHTML(a.reason),escapeHTML(b.reason)],
+    ["ข้อสรุป",escapeHTML(statusLabel(tool)),escapeHTML(statusLabel(peer))],
+    ["หลักฐาน",'<a href="'+escapeHTML(tool.source)+'" target="_blank" rel="noopener noreferrer">source ของ '+escapeHTML(tool.system)+'</a>','<a href="'+escapeHTML(peer.source)+'" target="_blank" rel="noopener noreferrer">source ของ '+escapeHTML(peer.system)+'</a>']
+  ];
+  $("comparison-table").innerHTML='<table><thead><tr><th scope="col">มิติที่เทียบ</th><th scope="col">'+escapeHTML(tool.name)+'</th><th scope="col">'+escapeHTML(peer.name)+'</th></tr></thead><tbody>'+rows.map(([label,left,right])=>'<tr><td>'+escapeHTML(label)+'</td><td>'+left+'</td><td>'+right+'</td></tr>').join("")+'</tbody></table>';
+}
+$("analysis-stats").innerHTML=[["รายการตั้งต้น",summary.total],["เก็บหลังตัดซ้ำ",summary.retained],["ยืนยันซ้ำ 100% / ซ่อน",summary.removed],["กลุ่มเปรียบเทียบ",summary.groups]].map(([label,value])=>'<div class="analysis-stat"><strong>'+value+'</strong><span>'+label+'</span></div>').join("");
+$("analysis-conclusion").textContent=review.conclusion;
+$("review-criteria").innerHTML=review.criteria.map(c=>'<li>'+escapeHTML(c)+'</li>').join("");
+$("review-limitation").textContent=review.limitations;
+for (const g of review.groups) { const option=document.createElement("option");option.value=g.id;option.textContent=g.title+" · "+g.members.length;$("family").append(option); }
+$("family").addEventListener("change",()=>{state.family=$("family").value;const first=filteredTools()[0];if(first)state.selected=key(first);render();});
+$("review-views").addEventListener("click",event=>{const button=event.target.closest("[data-view]");if(!button)return;state.view=button.dataset.view;const first=filteredTools()[0];if(first)state.selected=key(first);render();});
+$("detail-body").addEventListener("click",event=>{const button=event.target.closest("[data-compare]");if(!button)return;state.compare=button.dataset.compare;const selected=tools.find(t=>key(t)===state.selected);if(selected)renderComparison(selected);$("comparison").scrollIntoView({behavior:"smooth",block:"start"});});
+
+render();
+</script>
+</body>
+</html>
+
+
+
