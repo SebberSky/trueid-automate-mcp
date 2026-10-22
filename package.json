@@ -4,11 +4,13 @@
   "private": true,
   "type": "module",
   "license": "MIT",
-  "description": "Public automation MCP capability inventory and conservative functional deduplication research.",
+  "description": "Public automation MCP capability inventory plus Chromium execution vertical slice (REST/MCP).",
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "node --test test/*.test.mjs",
-    "preview": "node scripts/preview.mjs"
+    "preview": "node scripts/preview.mjs",
+    "test:execution": "npm --prefix execution test",
+    "start:execution": "npm --prefix execution start"
   },
   "engines": {
     "node": ">=22"

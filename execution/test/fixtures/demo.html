@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TrueID Automate Demo</title>
+</head>
+<body>
+  <h1>Login demo</h1>
+  <label for="username">Username</label>
+  <input id="username" data-testid="login_edittext_username" type="text" />
+  <label for="password">Password</label>
+  <input id="password" data-testid="login_edittext_password" type="password" />
+  <button type="button" data-testid="login_button_submit" id="submit">Sign in</button>
+  <p id="result" data-testid="login_label_result" hidden></p>
+  <script>
+    document.getElementById("submit").addEventListener("click", () => {
+      const user = document.getElementById("username").value.trim();
+      const result = document.getElementById("result");
+      result.hidden = false;
+      result.textContent = user ? `Welcome, ${user}` : "Missing username";
+    });
+  </script>
+</body>
+</html>

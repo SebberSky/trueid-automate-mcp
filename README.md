@@ -1,12 +1,14 @@
 # TrueID Automate MCP
 
-Public capability research and a searchable catalogue for designing an automation MCP server.
+Public capability research and a searchable catalogue for designing an automation MCP server — plus a **Chromium vertical-slice** execution package (owned REST + MCP + Playwright-library runner).
 
-**Website:** https://automation-mcp-tool-index.chawapon-rr.chatgpt.site
+**Website (research catalog, read-only):** https://automation-mcp-tool-index.chawapon-rr.chatgpt.site
 
 ## Current scope
 
-149 tools from Appium, Maestro, Playwright and Mobile MCP, with 32 comparison groups and per-tool functional notes. This repository currently contains the research website and comparison logic; it does not yet implement an automation MCP server.
+**Research:** 149 tools from Appium, Maestro, Playwright and Mobile MCP, with 32 comparison groups and per-tool functional notes.
+
+**Execution (new):** `execution/` implements the Chromium slice — session → navigate → inspect → find → click/type → assert → screenshot → release — via our REST API and MCP stdio tools. It uses the Playwright **library** under our service layer; it does **not** wrap vendor MCP servers. iOS/Android are not implemented yet (explicit `unsupported`). See `execution/README.md` and `docs/contracts/`.
 
 The review distinguishes overlapping functionality from fully equivalent functionality. Tools are hidden only when a reviewed exact-equivalence group has evidence and matching contracts across functions, targets, inputs, outputs and support. Subsets, supersets and uncertain comparisons remain visible.
 
@@ -14,7 +16,9 @@ Current source-based result: **149 retained, 0 confirmed exact duplicates hidden
 
 ## Run
 
-Requires Node.js 22 or later. No package installation is needed.
+Requires Node.js 22 or later.
+
+### Research catalog (no install)
 
 ```sh
 npm run build
@@ -23,6 +27,17 @@ npm run preview
 ```
 
 Open the URL printed by the preview command. The generated `dist/index.html` also works as a standalone offline file.
+
+### Execution vertical slice
+
+```sh
+cd execution
+npm install
+npx playwright install chromium
+npm test
+npm start    # REST http://127.0.0.1:8787
+npm run mcp  # MCP stdio
+```
 
 ## Files
 
